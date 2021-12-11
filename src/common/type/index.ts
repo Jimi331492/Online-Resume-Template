@@ -3,14 +3,9 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-12 00:03:37
+ * @LastEditTime: 2021-12-12 02:26:43
  * @LastEditors: Please set LastEditors
  */
-interface context {
-  title: string
-  bottom: number
-  direction: string
-}
 interface baseInfo {
   name: string //姓名
   E_name: string //英文名
@@ -25,13 +20,20 @@ interface baseInfo {
   job: string //应聘职位
 }
 interface contact {
-  label: string
+  key: string
+  value: string
   href: string
   icon: string
 }
 interface header {
   baseInfo: baseInfo
   contact: Array<contact>
+}
+
+interface buttonItem {
+  title: string
+  bottom: number
+  direction: string
 }
 
 interface formConfigObject {
@@ -79,4 +81,4 @@ export interface items {
   value: string
   tags: unknown
 }
-export { context, baseInfo, contact, header, formConfigObject, formItemConfig }
+export { buttonItem, baseInfo, contact, header, formConfigObject, formItemConfig }

@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 16:59:21
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\Form.vue
- * @LastEditTime: 2021-12-11 23:59:37
+ * @LastEditTime: 2021-12-12 03:25:53
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -50,8 +50,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    console.log('props', props)
-
     const handleInput = (option: formItemOption) => {
       console.log('inputOption', option)
       emit('mychange', { ...props.value, ...option })

@@ -3,10 +3,10 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-12 00:06:07
+ * @LastEditTime: 2021-12-12 02:26:35
  * @LastEditors: Please set LastEditors
  */
-import { formConfigObject, formItemConfig, context, header, selectOptions } from '../type/index'
+import { formConfigObject, formItemConfig, buttonItem, header, selectOptions } from '../type/index'
 import { reactive } from 'vue'
 //设置Header
 export const resumerHeader: header = reactive({
@@ -26,22 +26,26 @@ export const resumerHeader: header = reactive({
   },
   contact: [
     {
-      label: '个人博客',
+      key: '个人博客',
+      value: '',
       href: 'https://my3iao.com',
       icon: 'icon-blog',
     },
     {
-      label: 'GitHub',
+      key: 'GitHub',
+      value: '',
       href: 'https://github.com/Jimi331492',
       icon: 'icon-github-fill',
     },
     {
-      label: '17367695105',
+      key: 'iPhone',
+      value: '17367695105',
       href: 'tel:17367695105',
       icon: 'icon-phone_circle_fill',
     },
     {
-      label: '1592043271@qq.com',
+      key: 'Email',
+      value: '1592043271@qq.com',
       href: 'mailto:1592043271@qq.com',
       icon: 'icon-email',
     },
@@ -89,8 +93,8 @@ export const contactFormConfig: formConfigObject = reactive({
   formItemList: [
     { label: '手机号', type: 'input', value: '', placeholder: '请输入手机号', subType: '', key: 'iPhone' },
     { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
-    { label: 'GitHub', type: 'input', value: '', placeholder: '请选择', subType: '', key: 'GitHub' },
-    { label: '个人博客', type: 'input', value: '', placeholder: '请选择', subType: '', key: '个人博客' },
+    { label: 'GitHub', type: 'input', value: '', placeholder: '请输入GitHub', subType: '', key: 'GitHub' },
+    { label: '个人博客', type: 'input', value: '', placeholder: '请输入博客地址', subType: '', key: '个人博客' },
   ] as Array<formItemConfig>,
 })
 
@@ -180,7 +184,7 @@ export const experience = reactive({
   ],
 })
 
-export const buttonList: Array<context> = reactive([
+export const buttonList: Array<buttonItem> = reactive([
   {
     title: '基本信息',
     bottom: 600,
