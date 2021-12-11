@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-11 17:29:30
+ * @LastEditTime: 2021-12-12 00:03:37
  * @LastEditors: Please set LastEditors
  */
 interface context {
@@ -29,7 +29,7 @@ interface contact {
   href: string
   icon: string
 }
-interface form {
+interface header {
   baseInfo: baseInfo
   contact: Array<contact>
 }
@@ -53,15 +53,20 @@ interface formItemConfig {
   key: string
   subType: string
 }
+export interface formItemOption {
+  [index: string]: string
+}
+
+export interface selectOptions {
+  [index: number]: formItemOption
+}
 
 export interface rule {
   required: boolean
   message: string
   trigger: string
 }
-export interface sex {
-  sex: string
-}
+
 export interface hdcontext {
   name: string
   time: string
@@ -74,4 +79,4 @@ export interface items {
   value: string
   tags: unknown
 }
-export { context, baseInfo, contact, form, formConfigObject, formItemConfig }
+export { context, baseInfo, contact, header, formConfigObject, formItemConfig }

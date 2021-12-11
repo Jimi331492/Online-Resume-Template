@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-11 17:30:04
+ * @LastEditTime: 2021-12-11 23:53:53
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -72,7 +72,7 @@ export default defineComponent({
   /* eslint-disable */
   setup(props) {
     // console.log('props', props)
-    let base: Ref
+    let base: Ref = ref()
     const avaImg: Ref = ref(null)
 
     let chooseAva = (e: Event) => {

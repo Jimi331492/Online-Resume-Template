@@ -3,78 +3,13 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-11 18:09:01
+ * @LastEditTime: 2021-12-12 00:06:07
  * @LastEditors: Please set LastEditors
  */
-import { formItemConfig, context, form } from '../type/index'
+import { formConfigObject, formItemConfig, context, header, selectOptions } from '../type/index'
 import { reactive } from 'vue'
-const sexOption = [
-  {
-    label: '男',
-    value: '男',
-  },
-  {
-    label: '女',
-    value: '女',
-  },
-  {
-    label: 'NULL',
-    value: '',
-  },
-]
-
-export const baseInfoFormConfig = reactive({
-  labelWidth: '70px',
-  labelPosition: 'left',
-  size: 'small',
-  formItemList: [
-    { label: '姓名', type: 'input', value: 'headerForm.baseInfo.name', placeholder: '请输入姓名', subType: '', key: 'name' },
-    { label: '英文名', type: 'input', value: 'headerForm.baseInfo.E_name', placeholder: '请输入', subType: '', key: 'E_name' },
-    { label: '意向职位', type: 'input', value: 'headerForm.baseInfo.job', placeholder: '请输入', subType: '', key: 'job' },
-    { label: '性别', type: 'select', value: 'headerForm.baseInfo.sex', placeholder: '请选择', subType: sexOption, key: 'sex' },
-    { label: '年龄', type: 'input', value: 'headerForm.baseInfo.birth', placeholder: '请输入', subType: '', key: 'birth' },
-    { label: '户籍', type: 'input', value: 'headerForm.baseInfo.hometown', placeholder: '请输入', subType: '', key: 'hometown' },
-    { label: '学历', type: 'input', value: 'headerForm.baseInfo.edu', placeholder: '请输入', subType: '', key: 'edu' },
-    { label: '毕业时间', type: 'input', value: 'headerForm.baseInfo.edu_time', placeholder: '请输入', subType: '', key: 'edu_time' },
-    { label: '学校', type: 'input', value: 'headerForm.baseInfo.school', placeholder: '请输入', subType: '', key: 'school' },
-    { label: '学校链接', type: 'input', value: 'headerForm.baseInfo.school_rul', placeholder: '请输入', subType: '', key: 'school_url' },
-    { label: '专业', type: 'input', value: 'headerForm.baseInfo.subject', placeholder: '请输入', subType: '', key: 'subject' },
-  ] as Array<formItemConfig>,
-})
-
-// const contactOptions = [
-//   {
-//     label: 'iPhone',
-//     icon: 'icon-phone_circle_fill',
-//   },
-//   {
-//     label: 'Email',
-//     icon: 'icon-email',
-//   },
-//   {
-//     label: 'GitHub',
-//     icon: 'icon-github-fill',
-//   },
-//   {
-//     label: 'Blog',
-//     icon: 'icon-blog',
-//   },
-// ]
-
-export const contactFormConfig = reactive({
-  labelWidth: '70px',
-  labelPosition: 'left',
-  size: 'small',
-  formItemList: [
-    { label: '手机号', type: 'input', value: '', placeholder: '请输入手机号', subType: '', key: 'iPhone' },
-    { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
-    { label: 'GitHub', type: 'input', value: '', placeholder: '请选择', subType: '', key: 'GitHub' },
-    { label: '个人博客', type: 'input', value: '', placeholder: '请选择', subType: '', key: '个人博客' },
-  ] as Array<formItemConfig>,
-})
-
 //设置Header
-export const headerForm: form = reactive({
+export const resumerHeader: header = reactive({
   baseInfo: {
     name: '龙际妙', //姓名
     E_name: 'Jimi Lo', //英文名
@@ -112,6 +47,53 @@ export const headerForm: form = reactive({
     },
   ],
 })
+
+const sexOption: selectOptions = [
+  {
+    label: '男',
+    value: '男',
+  },
+  {
+    label: '女',
+    value: '女',
+  },
+  {
+    label: 'NULL',
+    value: '',
+  },
+]
+
+export const baseInfoFormConfig: formConfigObject = reactive({
+  labelWidth: '70px',
+  labelPosition: 'left',
+  size: 'small',
+  formItemList: [
+    { label: '姓名', type: 'input', value: 'headerForm.baseInfo.name', placeholder: '请输入姓名', subType: '', key: 'name' },
+    { label: '英文名', type: 'input', value: 'headerForm.baseInfo.E_name', placeholder: '请输入', subType: '', key: 'E_name' },
+    { label: '意向职位', type: 'input', value: 'headerForm.baseInfo.job', placeholder: '请输入', subType: '', key: 'job' },
+    { label: '性别', type: 'select', value: 'headerForm.baseInfo.sex', placeholder: '请选择', subType: sexOption, key: 'sex' },
+    { label: '年龄', type: 'input', value: 'headerForm.baseInfo.birth', placeholder: '请输入', subType: '', key: 'birth' },
+    { label: '户籍', type: 'input', value: 'headerForm.baseInfo.hometown', placeholder: '请输入', subType: '', key: 'hometown' },
+    { label: '学历', type: 'input', value: 'headerForm.baseInfo.edu', placeholder: '请输入', subType: '', key: 'edu' },
+    { label: '毕业时间', type: 'input', value: 'headerForm.baseInfo.edu_time', placeholder: '请输入', subType: '', key: 'edu_time' },
+    { label: '学校', type: 'input', value: 'headerForm.baseInfo.school', placeholder: '请输入', subType: '', key: 'school' },
+    { label: '学校链接', type: 'input', value: 'headerForm.baseInfo.school_rul', placeholder: '请输入', subType: '', key: 'school_url' },
+    { label: '专业', type: 'input', value: 'headerForm.baseInfo.subject', placeholder: '请输入', subType: '', key: 'subject' },
+  ] as Array<formItemConfig>,
+})
+
+export const contactFormConfig: formConfigObject = reactive({
+  labelWidth: '70px',
+  labelPosition: 'left',
+  size: 'small',
+  formItemList: [
+    { label: '手机号', type: 'input', value: '', placeholder: '请输入手机号', subType: '', key: 'iPhone' },
+    { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
+    { label: 'GitHub', type: 'input', value: '', placeholder: '请选择', subType: '', key: 'GitHub' },
+    { label: '个人博客', type: 'input', value: '', placeholder: '请选择', subType: '', key: '个人博客' },
+  ] as Array<formItemConfig>,
+})
+
 // 设置专业技能
 export const skillList = reactive([
   {
