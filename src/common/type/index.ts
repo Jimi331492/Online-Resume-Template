@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-11 02:03:12
+ * @LastEditTime: 2021-12-11 17:29:30
  * @LastEditors: Please set LastEditors
  */
 interface context {
@@ -20,13 +20,13 @@ interface baseInfo {
   edu: string //学历
   edu_time: string //毕业时间
   school: string //学校
+  school_url: string //官网链接
   subject: string //专业
   job: string //应聘职位
 }
 interface contact {
-  type: string
-  key: string
-  value: string
+  label: string
+  href: string
   icon: string
 }
 interface form {
@@ -53,12 +53,15 @@ interface formItemConfig {
   key: string
   subType: string
 }
+
 export interface rule {
   required: boolean
   message: string
   trigger: string
 }
-
+export interface sex {
+  sex: string
+}
 export interface hdcontext {
   name: string
   time: string

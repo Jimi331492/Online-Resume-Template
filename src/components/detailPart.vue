@@ -3,7 +3,7 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-11 01:48:06
+ * @LastEditTime: 2021-12-11 16:08:13
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -41,76 +41,20 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { hdcontext, items as item } from '../common/type/index'
 export default defineComponent({
   name: 'v-part',
   props: {
     title: {
       type: String,
-      default: '专业技能',
+      require: true,
     },
     context: {
       type: Object,
-      default: (): hdcontext => {
-        return {
-          name: '',
-          time: '',
-          btn: '',
-        }
-      },
+      require: true,
     },
     infoList: {
       type: Array,
-      default: (): Array<item> => {
-        return [
-          {
-            name: '',
-            time: '',
-            btn: '',
-            value: '熟悉 HTML、CSS、JS、ES6',
-            tags: {
-              HTML: 'strong',
-              CSS: 'strong',
-              JS: 'strong',
-              ES6: 'strong',
-            },
-          },
-          {
-            name: '',
-            time: '',
-            btn: '',
-            value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
-            tags: {
-              Vue: 'strong',
-              ElmentUI: 'strong',
-              Webpack: 'strong',
-              搭建博客: 'em',
-            },
-          },
-          {
-            name: '',
-            time: '',
-            btn: '',
-            value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
-            tags: {
-              Git: 'strong',
-              编程习惯: 'em',
-              团队开发: 'em',
-            },
-          },
-          {
-            name: '',
-            time: '',
-            btn: '',
-            value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
-            tags: {
-              Java: 'strong',
-              SpringBoot: 'SpringBoot',
-              CRUD接口: 'em',
-            },
-          },
-        ]
-      },
+      require: true,
     },
   },
   setup(props) {
@@ -120,7 +64,7 @@ export default defineComponent({
       return soure.slice(0, start) + newStr + soure.slice(start)
     }
     // eslint-disable-next-line
-    props.infoList.map((item: any): void => {
+    props.infoList?.map((item: any): void => {
       let tags = item.tags
       let value = item.value
 

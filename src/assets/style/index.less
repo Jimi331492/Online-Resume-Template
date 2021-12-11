@@ -21,7 +21,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   font-weight: normal;
   font-size: inherit;
 }
@@ -85,6 +86,8 @@ body {
   padding-top: 60px;
   padding-bottom: 20px;
   background-color: #eee;
+
+  min-width: 450px;
 }
 
 .btn2 {
@@ -540,6 +543,54 @@ footer .footer-link {
   }
 }
 
+@media screen and (max-width: 1960px) {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: normal;
+    font-size: inherit;
+    .iconfont{
+      align-self: flex-start;
+    }
+  }
+}
+
+@media all and (max-width: 1260px) {
+  .btn_wrap {
+    left: auto;
+    right: 8px;
+    margin-left: 0;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: normal;
+    font-size: inherit;
+  }
+
+  .edit {
+    display: none;
+  }
+  .job {
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   body {
     padding-top: 0;
@@ -606,22 +657,16 @@ footer .footer-link {
       justify-content: center;
     }
   }
-}
 
-@media all and (max-width: 1260px) {
-  .btn_wrap {
-    left: auto;
-    right: 8px;
-    margin-left: 0;
-  }
-
-  .edit {
-    display: none;
-  }
-  .job {
-    width: 100%;
-    font-size: 24px;
-    text-align: center;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    display: block;
+    font-weight: normal;
+    font-size: inherit;
   }
 }
 

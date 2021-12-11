@@ -3,12 +3,16 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-11 03:41:46
+ * @LastEditTime: 2021-12-11 17:56:42
  * @LastEditors: Please set LastEditors
 -->
 <template>
   <el-form-item :label="itemConfig.label" :prop="itemConfig.key">
-    <el-input v-if="itemConfig.type === 'input'" v-bind="$attrs" :placeholder="itemConfig.placeholder" v-model="value" @input="handleInput(itemConfig.key)" />
+    <!-- <el-input v-if="itemConfig.type === 'input'" v-bind="$attrs" :placeholder="itemConfig.placeholder" v-model="value" @input="handleInput(itemConfig.key)" /> -->
+    <el-input v-if="itemConfig.type === 'input'" :placeholder="itemConfig.placeholder" v-model="value" @input="handleInput" />
+    <el-select v-if="itemConfig.type === 'select'" v-model="value" :placeholder="itemConfig.placeholder" @change="handleSelect">
+      <el-option v-for="item in itemConfig.subType" :key="item.label" :label="item.label" :value="item.value"> </el-option>
+    </el-select>
   </el-form-item>
 </template>
 
@@ -24,15 +28,18 @@ export default defineComponent({
     },
   },
   setup(props, { attrs, emit }) {
-    console.log('attrs', attrs)
     let value = ref(attrs.value)
-    const handleInput = (key: string) => {
-      console.log('event', event)
-      console.log('value', (event?.target as HTMLInputElement).value)
-
-      emit('input', { [key]: (event?.target as HTMLInputElement).value })
+    console.log('formitem-input', value)
+    const handleInput = (value: string) => {
+      console.log('formitem-input', value)
+      emit('myinput', { [props.itemConfig?.key]: value })
     }
-    return { value, handleInput }
+    const handleSelect = (value: string) => {
+      console.log('formitem-select', value)
+
+      emit('myselect', { [props.itemConfig?.key]: value })
+    }
+    return { value, handleInput, handleSelect }
   },
 })
 </script>

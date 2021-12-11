@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-11 01:48:14
+ * @LastEditTime: 2021-12-11 17:30:04
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -29,16 +29,15 @@
     <div class="clearfix">
       <!-- 基本信息+教育信息 -->
       <section class="info">
-        <h2>{{ baseInfo.sex + '/' + baseInfo.birth + '/' + baseInfo.hometown }}</h2>
-        <h3>{{ baseInfo.edu + '/' + baseInfo.edu_time }}</h3>
+        <h2>
+          {{ baseInfo.sex }} <span v-show="baseInfo.sex !== '' && baseInfo.birth !== ''">/</span> {{ baseInfo.birth }}
+          <span v-show="baseInfo.hometown !== '' && baseInfo.birth !== ''">/</span>
+          {{ baseInfo.hometown }}
+        </h2>
+        <h3>{{ baseInfo.edu }} <span v-show="baseInfo.edu !== '' && baseInfo.edu_time !== ''">/</span> {{ baseInfo.edu_time }}</h3>
 
         <p>
-          <a
-            target="_blank"
-            href="https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=%E6%B2%B3%E5%8C%97%E5%9C%B0%E8%B4%A8%E5%A4%A7%E5%AD%A6&oq=%25E9%2587%258D%25E5%25BA%2586%25E9%2582%25AE%25E7%2594%25B5%25E5%25A4%25A7%25E5%25AD%25A6&rsv_pq=aa4d3790000d4fb4&rsv_t=205czoWQgAeiez6W2my5tUNmth4SN9NE8quzLc42j%2FnJ1ie%2F%2Fj0dxz0rsnU&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=18&rsv_sug1=16&rsv_sug7=100&bs=%E9%87%8D%E5%BA%86%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6"
-          >
-            {{ baseInfo.school }}
-          </a>
+          <a target="_blank" :href="baseInfo.school_url"> {{ baseInfo.school }} </a><span v-show="baseInfo.school !== '' && baseInfo.subject !== ''">/</span>
           {{ baseInfo.subject }}
         </p>
       </section>
@@ -46,8 +45,8 @@
       <section class="contact">
         <ul>
           <li v-for="(item, index) in contact" :key="index">
-            <a :href="item.type + item.value" target="_blank">
-              <span>{{ item.key }}</span>
+            <a :href="item.href" target="_blank">
+              <span>{{ item.label }}</span>
               <i :class="'iconfont ' + item.icon"></i>
             </a>
           </li>
