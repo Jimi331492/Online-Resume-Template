@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-09 03:04:20
+ * @LastEditTime: 2021-12-11 01:48:14
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -29,8 +29,8 @@
     <div class="clearfix">
       <!-- 基本信息+教育信息 -->
       <section class="info">
-        <h2>{{ baseInfo.sex_birth_hometown }}</h2>
-        <h3>{{ baseInfo.edu_time_ }}</h3>
+        <h2>{{ baseInfo.sex + '/' + baseInfo.birth + '/' + baseInfo.hometown }}</h2>
+        <h3>{{ baseInfo.edu + '/' + baseInfo.edu_time }}</h3>
 
         <p>
           <a
@@ -45,7 +45,7 @@
       <!-- 联系方式 -->
       <section class="contact">
         <ul>
-          <li v-for="(item, index) in contactInfo" :key="index">
+          <li v-for="(item, index) in contact" :key="index">
             <a :href="item.type + item.value" target="_blank">
               <span>{{ item.key }}</span>
               <i :class="'iconfont ' + item.icon"></i>
@@ -59,80 +59,24 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue'
-// interface baseInfo {
-//   name: string //姓名
-//   E_name: string //英文名
-//   sex_birth_hometown: string //性别_生日_籍贯
-//   edu_time_: string //学历_毕业时间
-//   school: string
-//   subject_: string //学校_专业
-//   job: string //应聘职位
-// }
-// interface contactInfo {
-//   Zhi_Hu: string //知乎
-//   Gitee: string //码云
-//   Git_Hub: string //性别_生日_籍贯
-//   tel: number //电话
-//   e_mail: string //邮箱
-//   blog: string
-// }
+
 export default defineComponent({
-  name: 'Headers',
+  name: 'v-header',
   props: {
     baseInfo: {
       type: Object,
-      //对象
-      default: () => {
-        return {
-          name: '龙际妙', //姓名
-          E_name: 'Jimi Lo', //英文名
-          sex_birth_hometown: '男 / 2000.06 湖南', //性别_生日_籍贯
-          edu_time_: '本科 / 2022年毕业', //学历_毕业时间
-          school: '河北地质大学', //学校_专业
-          subject: '软件工程', //专业
-          job: 'Web前端开发工程师', //应聘职位
-        }
-      },
     },
-    contactInfo: {
+    contact: {
       type: Array,
-      //对象
-      default: () => {
-        return [
-          {
-            type: 'https://',
-            key: '个人博客',
-            value: 'my3iao.com',
-            icon: 'icon-blog',
-          },
-          {
-            type: 'https://',
-            key: 'GitHub',
-            value: 'github.com/Jimi331492',
-            icon: 'icon-github-fill',
-          },
-          {
-            type: 'tel:',
-            key: '17367695105',
-            value: '17367695105',
-            icon: 'icon-tel',
-          },
-          {
-            type: 'mailto:',
-            key: '1592043271@qq.com',
-            value: '1592043271@qq.com',
-            icon: 'icon-email',
-          },
-        ]
-      },
     },
   },
+  /* eslint-disable */
   setup(props) {
-    console.log('props', props)
+    // console.log('props', props)
     let base: Ref
     const avaImg: Ref = ref(null)
 
-    let chooseAva = function (e: Event) {
+    let chooseAva = (e: Event) => {
       console.log('e', e)
       let files: FileList = (e.target as HTMLInputElement).files as FileList
       let file: File | Blob = files[0]
