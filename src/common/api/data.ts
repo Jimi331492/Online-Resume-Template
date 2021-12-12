@@ -3,11 +3,12 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-12 02:26:35
+ * @LastEditTime: 2021-12-12 18:58:25
  * @LastEditors: Please set LastEditors
  */
-import { formConfigObject, formItemConfig, buttonItem, header, selectOptions } from '../type/index'
+
 import { reactive } from 'vue'
+import { formConfigObject, formItemConfig, buttonItem, header, selectOptions, part, partItem } from '../type/index'
 //设置Header
 export const resumerHeader: header = reactive({
   baseInfo: {
@@ -98,69 +99,66 @@ export const contactFormConfig: formConfigObject = reactive({
   ] as Array<formItemConfig>,
 })
 
-// 设置专业技能
-export const skillList = reactive([
-  {
-    name: '',
-    time: '',
-    btn: '',
-    value: '熟悉 HTML、CSS、JS、ES6',
-    tags: {
-      HTML: 'strong',
-      CSS: 'strong',
-      JS: 'strong',
-      ES6: 'strong',
-    },
-  },
-  {
-    name: '',
-    time: '',
-    btn: '',
-    value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
-    tags: {
-      Vue: 'strong',
-      ElmentUI: 'strong',
-      Webpack: 'strong',
-      搭建博客: 'em',
-    },
-  },
-  {
-    name: '',
-    time: '',
-    btn: '',
-    value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
-    tags: {
-      Git: 'strong',
-      编程习惯: 'em',
-      团队开发: 'em',
-    },
-  },
-  {
-    name: '',
-    time: '',
-    btn: '',
-    value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
-    tags: {
-      Java: 'strong',
-      SpringBoot: 'SpringBoot',
-      CRUD接口: 'em',
-    },
-  },
-])
-
-export const skillContext = reactive({
-  name: '',
-  time: '',
-  btn: '',
+export const partFormConfig: formConfigObject = reactive({
+  labelWidth: '70px',
+  labelPosition: 'left',
+  size: 'small',
+  formItemList: [
+    { label: '主标题', type: 'input', value: '', placeholder: '请输入主标题', subType: '', key: 'title' },
+    { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
+    { label: 'GitHub', type: 'input', value: '', placeholder: '请输入GitHub', subType: '', key: 'GitHub' },
+    { label: '个人博客', type: 'input', value: '', placeholder: '请输入博客地址', subType: '', key: '个人博客' },
+  ] as Array<formItemConfig>,
 })
+
+// 设置专业技能
+export const skill: part = reactive({
+  mainTitle: '专业技能',
+  partItemList: [
+    {
+      value: '熟悉 HTML、CSS、JS、ES6',
+      tags: {
+        HTML: 'strong',
+        CSS: 'strong',
+        JS: 'strong',
+        ES6: 'strong',
+      },
+    },
+    {
+      value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
+      tags: {
+        Vue: 'strong',
+        ElmentUI: 'strong',
+        Webpack: 'strong',
+        搭建博客: 'em',
+      },
+    },
+    {
+      value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
+      tags: {
+        Git: 'strong',
+        编程习惯: 'em',
+        团队开发: 'em',
+      },
+    },
+    {
+      value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
+      tags: {
+        Java: 'strong',
+        SpringBoot: 'strong',
+        CRUD接口: 'em',
+      },
+    },
+  ] as Array<partItem>,
+})
+
 // 设置实习经历
 export const experience = reactive({
-  title: '实习经历',
-  context: {
-    name: '中兴通软(北京)科技有限公司',
-    time: '2021.09~至今',
-  },
-  infoList: [
+  mainTitle: '实习经历',
+  subTitle: '中兴通软(北京)科技有限公司',
+  subRemark: '2021.09~至今',
+  subBtnHtml: '',
+  partItemList: [
     {
       name: '智牧兴农·管理平台',
       time: '',
@@ -198,11 +196,11 @@ export const buttonList: Array<buttonItem> = reactive([
   {
     title: '专业技能',
     bottom: 400,
-    direction: 'btt',
+    direction: 'rtl',
   },
   {
     title: '实习经历',
     bottom: 300,
-    direction: 'btt',
+    direction: 'rtl',
   },
 ])

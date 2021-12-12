@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-12 02:48:55
+ * @LastEditTime: 2021-12-12 18:56:52
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -32,11 +32,11 @@ export default defineComponent({
     // console.log('formitem-input', value)
 
     const handleInput = (value: string) => {
-      console.log('formitem-input', value)
+      // console.log('formitem-input', value)
       emit('myinput', { [props.itemConfig?.key]: value })
     }
     const handleSelect = (value: string) => {
-      console.log('formitem-select', value)
+      // console.log('formitem-select', value)
 
       emit('myselect', { [props.itemConfig?.key]: value })
     }

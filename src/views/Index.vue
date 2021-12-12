@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-12 03:58:54
+ * @LastEditTime: 2021-12-12 18:57:14
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -13,8 +13,8 @@
     <div class="content-bd">
       <!-- 简历左部 -->
       <div class="content-left">
-        <v-part title="专业技能" :context="skillContext" :infoList="skillList"></v-part>
-        <v-part :title="experience.title" :context="experience.context" :infoList="experience.infoList"></v-part>
+        <v-part :part="skill"></v-part>
+        <v-part :part="experience"></v-part>
       </div>
       <!-- 简历右部 -->
       <div class="content-right"></div>
@@ -24,6 +24,7 @@
   <el-drawer v-model="drawer" @open="openDrawerCb" :title="titles" :direction="direction" :before-close="handleClose">
     <dynamic-form :formConfig="contactFormConfig" :value="contactForm" @mychange="contactInput" v-if="titles === '联系方式'"></dynamic-form>
     <dynamic-form :formConfig="baseInfoFormConfig" :value="header.baseInfo" @mychange="baseInfoInput" v-if="titles === '基本信息'"></dynamic-form>
+    <dynamic-form :formConfig="partFormConfig" :value="{}" @mychange="partInput" v-if="titles === '专业技能'"></dynamic-form>
   </el-drawer>
   <!-- 按钮区域 -->
   <template v-for="(item, index) in buttonList" :key="index">
@@ -38,7 +39,7 @@ import vPart from '../components/detailPart.vue'
 import vButton from '../components/Button/Button.vue'
 import dynamicForm from '../components/dynamicForm/Form.vue'
 import { baseInfo, contact, formItemOption } from '../common/type/index'
-import { resumerHeader as header, baseInfoFormConfig, contactFormConfig, buttonList, experience, skillContext, skillList } from '../common/api/data'
+import { resumerHeader as header, baseInfoFormConfig, contactFormConfig, partFormConfig, buttonList, experience, skill } from '../common/api/data'
 
 export default defineComponent({
   components: {
@@ -75,20 +76,20 @@ export default defineComponent({
           }
         }
         formModel = reactive(contactForm)
-        console.log('formModel', formModel)
+        // console.log('formModel', formModel)
       }
     }
 
     // 基本信息表单绑定
     const baseInfoInput = (e: baseInfo) => {
-      console.log('index', e)
+      // console.log('index', e)
       header.baseInfo = reactive(e)
     }
 
     // 联系方式表单绑定
     const contactInput = (contactForm: formItemOption) => {
-      console.log('contactForm', contactForm)
-      console.log('header.baseInfo', header.contact)
+      // console.log('contactForm', contactForm)
+      // console.log('header.baseInfo', header.contact)
 
       const newContact = Object.entries(contactForm)
 
@@ -102,6 +103,10 @@ export default defineComponent({
       })
     }
 
+    const partInput = (e: any) => {
+      console.log('index', e)
+    }
+
     // 抽屉关闭的回调
     const handleClose = (done: FunctionConstructor) => {
       done()
@@ -113,11 +118,10 @@ export default defineComponent({
       buttonList,
       baseInfoFormConfig,
       contactFormConfig,
-
+      partFormConfig,
       header,
       direction,
-      skillContext,
-      skillList,
+      skill,
       experience,
       formModel,
       contactForm,
@@ -126,6 +130,7 @@ export default defineComponent({
       handleClose,
       baseInfoInput,
       contactInput,
+      partInput,
     }
   },
 })

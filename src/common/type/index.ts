@@ -3,10 +3,10 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-12 02:26:43
+ * @LastEditTime: 2021-12-12 18:49:05
  * @LastEditors: Please set LastEditors
  */
-interface baseInfo {
+export interface baseInfo {
   name: string //姓名
   E_name: string //英文名
   sex: string //性别
@@ -19,39 +19,51 @@ interface baseInfo {
   subject: string //专业
   job: string //应聘职位
 }
-interface contact {
+export interface contact {
   key: string
   value: string
   href: string
   icon: string
 }
-interface header {
+export interface header {
   baseInfo: baseInfo
   contact: Array<contact>
 }
 
-interface buttonItem {
+export interface partItem {
+  title?: string
+  remark?: string
+  btnHtml?: string
+  value: string
+  tags: formItemOption
+}
+export interface part {
+  mainTitle: string
+  subTitle?: string
+  subRemark?: string
+  subBtnHtml?: string
+  partItemList: Array<partItem>
+}
+
+export interface buttonItem {
   title: string
   bottom: number
   direction: string
 }
 
-interface formConfigObject {
-  inline?: boolean
+export interface formConfigObject {
   labelPosition: string
   labelWidth: string
   size: string
-  statusIcon?: boolean
   formItemList: Array<formItemConfig>
 }
-interface formItemConfig {
+export interface formItemConfig {
   type: string
   label: string
   disable?: boolean
   readonly?: boolean
   value: string
   placeholder: string
-  rules?: Map<string, Array<rule> | rule>
   key: string
   subType: string
 }
@@ -62,23 +74,3 @@ export interface formItemOption {
 export interface selectOptions {
   [index: number]: formItemOption
 }
-
-export interface rule {
-  required: boolean
-  message: string
-  trigger: string
-}
-
-export interface hdcontext {
-  name: string
-  time: string
-  btn: string
-}
-export interface items {
-  name: string
-  time: string
-  btn: string
-  value: string
-  tags: unknown
-}
-export { buttonItem, baseInfo, contact, header, formConfigObject, formItemConfig }
