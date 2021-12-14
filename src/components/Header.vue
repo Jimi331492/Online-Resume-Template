@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-12 02:27:03
+ * @LastEditTime: 2021-12-13 16:33:43
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -45,7 +45,7 @@
       <section class="contact">
         <ul>
           <li v-for="item in contact" :key="item.key">
-            <a :href="item.href" target="_blank">
+            <a :href="item.href" target="_blank" v-show="item.href !== ''">
               <span v-if="item.value === ''">{{ item.key }}</span>
               <span v-else>{{ item.value }}</span>
               <i :class="'iconfont ' + item.icon"></i>

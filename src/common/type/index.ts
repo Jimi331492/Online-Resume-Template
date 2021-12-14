@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-12 18:49:05
+ * @LastEditTime: 2021-12-14 19:43:26
  * @LastEditors: Please set LastEditors
  */
 export interface baseInfo {
@@ -23,7 +23,7 @@ export interface contact {
   key: string
   value: string
   href: string
-  icon: string
+  icon?: string
 }
 export interface header {
   baseInfo: baseInfo
@@ -31,24 +31,30 @@ export interface header {
 }
 
 export interface partItem {
+  parentId: number
+  itemId: number
   title?: string
   remark?: string
   btnHtml?: string
+  btnHref?: string
   value: string
   tags: formItemOption
 }
 export interface part {
+  id: number
+  childId: number
   mainTitle: string
   subTitle?: string
   subRemark?: string
   subBtnHtml?: string
+  subBtnHref?: string
   partItemList: Array<partItem>
 }
 
 export interface buttonItem {
   title: string
   bottom: number
-  direction: string
+  direction?: string
 }
 
 export interface formConfigObject {
@@ -65,12 +71,19 @@ export interface formItemConfig {
   value: string
   placeholder: string
   key: string
-  subType: string
+  subType: formItemOption | string | number | selectOptions | Array<selectOptions>
 }
 export interface formItemOption {
   [index: string]: string
 }
 
+export interface inputOption {
+  [index: string]: string | number
+}
+export interface radioOption {
+  [index: string]: number
+}
+
 export interface selectOptions {
-  [index: number]: formItemOption
+  [index: number]: string
 }

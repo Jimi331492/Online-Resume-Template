@@ -3,12 +3,12 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-12 18:58:25
+ * @LastEditTime: 2021-12-14 16:21:39
  * @LastEditors: Please set LastEditors
  */
 
 import { reactive } from 'vue'
-import { formConfigObject, formItemConfig, buttonItem, header, selectOptions, part, partItem } from '../type/index'
+import { formConfigObject, formItemConfig, buttonItem, header, part, partItem } from '../type/index'
 //设置Header
 export const resumerHeader: header = reactive({
   baseInfo: {
@@ -53,7 +53,7 @@ export const resumerHeader: header = reactive({
   ],
 })
 
-const sexOption: selectOptions = [
+const sexOption = [
   {
     label: '男',
     value: '男',
@@ -73,17 +73,17 @@ export const baseInfoFormConfig: formConfigObject = reactive({
   labelPosition: 'left',
   size: 'small',
   formItemList: [
-    { label: '姓名', type: 'input', value: 'headerForm.baseInfo.name', placeholder: '请输入姓名', subType: '', key: 'name' },
-    { label: '英文名', type: 'input', value: 'headerForm.baseInfo.E_name', placeholder: '请输入', subType: '', key: 'E_name' },
-    { label: '意向职位', type: 'input', value: 'headerForm.baseInfo.job', placeholder: '请输入', subType: '', key: 'job' },
-    { label: '性别', type: 'select', value: 'headerForm.baseInfo.sex', placeholder: '请选择', subType: sexOption, key: 'sex' },
-    { label: '年龄', type: 'input', value: 'headerForm.baseInfo.birth', placeholder: '请输入', subType: '', key: 'birth' },
-    { label: '户籍', type: 'input', value: 'headerForm.baseInfo.hometown', placeholder: '请输入', subType: '', key: 'hometown' },
-    { label: '学历', type: 'input', value: 'headerForm.baseInfo.edu', placeholder: '请输入', subType: '', key: 'edu' },
-    { label: '毕业时间', type: 'input', value: 'headerForm.baseInfo.edu_time', placeholder: '请输入', subType: '', key: 'edu_time' },
-    { label: '学校', type: 'input', value: 'headerForm.baseInfo.school', placeholder: '请输入', subType: '', key: 'school' },
-    { label: '学校链接', type: 'input', value: 'headerForm.baseInfo.school_rul', placeholder: '请输入', subType: '', key: 'school_url' },
-    { label: '专业', type: 'input', value: 'headerForm.baseInfo.subject', placeholder: '请输入', subType: '', key: 'subject' },
+    { label: '姓名', type: 'input', value: '', placeholder: '请输入姓名', subType: '', key: 'name' },
+    { label: '英文名', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'E_name' },
+    { label: '意向职位', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'job' },
+    { label: '性别', type: 'select', value: '', placeholder: '请选择', subType: sexOption, key: 'sex' },
+    { label: '年龄', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'birth' },
+    { label: '户籍', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'hometown' },
+    { label: '学历', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'edu' },
+    { label: '毕业时间', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'edu_time' },
+    { label: '学校', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'school' },
+    { label: '学校链接', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'school_url' },
+    { label: '专业', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'subject' },
   ] as Array<formItemConfig>,
 })
 
@@ -104,85 +104,107 @@ export const partFormConfig: formConfigObject = reactive({
   labelPosition: 'left',
   size: 'small',
   formItemList: [
-    { label: '主标题', type: 'input', value: '', placeholder: '请输入主标题', subType: '', key: 'title' },
-    { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
-    { label: 'GitHub', type: 'input', value: '', placeholder: '请输入GitHub', subType: '', key: 'GitHub' },
-    { label: '个人博客', type: 'input', value: '', placeholder: '请输入博客地址', subType: '', key: '个人博客' },
+    { label: '主标题', type: 'input', value: '', placeholder: '请输入主标题', subType: '', key: 'mainTitle' },
+    { label: '副标题', type: 'input', value: '', placeholder: '请输入副标题', subType: '', key: 'subTitle' },
+    { label: '描述', type: 'input', value: '', placeholder: '请输入描述', subType: '', key: 'subBtnHtml' },
+    { label: '说明', type: 'input', value: '', placeholder: '请输入说明', subType: '', key: 'subRemark' },
+    { label: '段落', type: 'radio', value: '', placeholder: '请选择段落', subType: '', key: 'childId' },
+    { label: '段落标题', type: 'input', value: '', placeholder: '请输入标题', subType: 0, key: 'title' },
+    { label: '段落描述', type: 'input', value: '', placeholder: '请输入描述', subType: 0, key: 'btnHtml' },
+    { label: '段落说明', type: 'input', value: '', placeholder: '请输入说明', subType: 0, key: 'remark' },
+    { label: '段落内容', type: 'input', value: '', placeholder: '请输入内容', subType: 0, key: 'value' },
   ] as Array<formItemConfig>,
 })
 
-// 设置专业技能
-export const skill: part = reactive({
-  mainTitle: '专业技能',
-  partItemList: [
-    {
-      value: '熟悉 HTML、CSS、JS、ES6',
-      tags: {
-        HTML: 'strong',
-        CSS: 'strong',
-        JS: 'strong',
-        ES6: 'strong',
+export const partList: Array<part> = reactive([
+  {
+    // 设置专业技能
+    id: 0,
+    childId: 0,
+    mainTitle: '专业技能',
+    partItemList: [
+      {
+        parentId: 0,
+        itemId: 0,
+        value: '熟悉 HTML、CSS、JS、ES6',
+        tags: {
+          HTML: 'strong',
+          CSS: 'strong',
+          JS: 'strong',
+          ES6: 'strong',
+        },
       },
-    },
-    {
-      value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
-      tags: {
-        Vue: 'strong',
-        ElmentUI: 'strong',
-        Webpack: 'strong',
-        搭建博客: 'em',
+      {
+        parentId: 0,
+        itemId: 1,
+        value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
+        tags: {
+          Vue: 'strong',
+          ElmentUI: 'strong',
+          Webpack: 'strong',
+          搭建博客: 'em',
+        },
       },
-    },
-    {
-      value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
-      tags: {
-        Git: 'strong',
-        编程习惯: 'em',
-        团队开发: 'em',
+      {
+        parentId: 0,
+        itemId: 2,
+        value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
+        tags: {
+          Git: 'strong',
+          编程习惯: 'em',
+          团队开发: 'em',
+        },
       },
-    },
-    {
-      value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
-      tags: {
-        Java: 'strong',
-        SpringBoot: 'strong',
-        CRUD接口: 'em',
+      {
+        parentId: 0,
+        itemId: 3,
+        value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
+        tags: {
+          Java: 'strong',
+          SpringBoot: 'strong',
+          CRUD接口: 'em',
+        },
       },
-    },
-  ] as Array<partItem>,
-})
+    ] as Array<partItem>,
+  },
+  {
+    // 设置实习经历
+    id: 1,
+    childId: 0,
+    mainTitle: '实习经历',
+    subTitle: '中兴通软(北京)科技有限公司',
+    subRemark: '2021.09~至今',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 1,
+        itemId: 0,
+        title: '智牧兴农·管理平台',
+        remark: '',
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">Vue</a>',
+        value: '主要利用Vue2.x,和Element组件库搭建',
+        tags: {
+          'Vue2.x': 'strong',
+          Element: 'strong',
+        },
+      },
+      {
+        parentId: 1,
+        itemId: 1,
+        title: '智牧兴农·小程序',
+        remark: '',
+        btnHtml: '',
+        value: '负责智牧兴农 小程序 开发，前端基于服务端渲染技术Velocity 模板，学有余力把后端Spring框架学了',
+        tags: {
+          学有余力: 'em',
+          Spring: 'strong',
+        },
+      },
+    ] as Array<partItem>,
+  },
+])
 
-// 设置实习经历
-export const experience = reactive({
-  mainTitle: '实习经历',
-  subTitle: '中兴通软(北京)科技有限公司',
-  subRemark: '2021.09~至今',
-  subBtnHtml: '',
-  partItemList: [
-    {
-      name: '智牧兴农·管理平台',
-      time: '',
-      btn: '<a class="btn item-more" href="" target="_blank" title="企业实习">Vue</a>',
-      value: '主要利用Vue2.x,和Element组件库搭建',
-      tags: {
-        'Vue2.x': 'strong',
-        Element: 'strong',
-      },
-    },
-    {
-      name: '智牧兴农·小程序',
-      time: '',
-      btn: '',
-      value: '负责智牧兴农 小程序 开发，前端基于服务端渲染技术Velocity 模板，学有余力把后端Spring框架学了',
-      tags: {
-        学有余力: 'em',
-        Spring: 'strong',
-      },
-    },
-  ],
-})
-
-export const buttonList: Array<buttonItem> = reactive([
+export const drawerList: Array<buttonItem> = reactive([
   {
     title: '基本信息',
     bottom: 600,
@@ -193,14 +215,18 @@ export const buttonList: Array<buttonItem> = reactive([
     bottom: 500,
     direction: 'ltr',
   },
+])
+
+export const dialogList: Array<buttonItem> = reactive([
   {
+    id: 0,
     title: '专业技能',
     bottom: 400,
-    direction: 'rtl',
   },
+  { id: 1, title: '实习经历', bottom: 300 },
   {
-    title: '实习经历',
-    bottom: 300,
-    direction: 'rtl',
+    id: 2,
+    title: '+',
+    bottom: 200,
   },
 ])
