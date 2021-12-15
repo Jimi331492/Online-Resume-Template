@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-14 18:57:13
+ * @LastEditTime: 2021-12-15 16:25:34
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -14,7 +14,7 @@
       <!-- 简历左部 -->
       <div class="content-left">
         <template v-for="item in partList" :key="item.id">
-          <v-part :part="item"></v-part>
+          <v-part :part="item" @delete="deletePart"></v-part>
         </template>
       </div>
       <!-- 简历右部 -->
@@ -30,18 +30,42 @@
 
   <!-- 弹窗区域 -->
   <el-dialog v-model="dialogVisble" :title="titles" :lock-scroll="false">
-    <template v-for="(item, index) in partList" :key="index">
+    <template v-for="item in partList" :key="item.id">
       <dynamic-form :formConfig="partFormConfig" :value="item" @mychange="partInput" ref="partRef" v-if="item.id === partId"></dynamic-form>
     </template>
   </el-dialog>
 
+  <!-- 弹窗区域 -->
+  <el-dialog v-model="addDialogVisble" title="添加段落" :lock-scroll="false">
+    <dynamic-form :formConfig="partFormConfig" :value="partForm" @mychange="partInput" ref="partRef"></dynamic-form>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="addDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addPart">确 定</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
   <!-- 按钮区域 -->
-  <template v-for="(item, index) in drawerList" :key="index">
-    <v-button :context="item" @click="openDrawer(item.title, item.direction)"></v-button>
-  </template>
-  <template class="dialog-btn" v-for="(item, index) in dialogList" :key="index">
-    <v-button :context="item" @click="openDialog(item.title, item.id)"></v-button>
-  </template>
+
+  <nav class="btnArea">
+    <div class="btnItem">
+      <template class="dialog-btn" v-for="(item, index) in drawerList" :key="index">
+        <v-button :context="item" @click="openDrawer(item.mainTitle, item.direction)"></v-button>
+      </template>
+      <template v-for="item in partList" :key="item.id">
+        <v-button class="dialog-btn" :context="item" @click="openDialog(item.mainTitle, item.id)"></v-button>
+      </template>
+
+      <v-button
+        class="dialog-btn"
+        :context="{
+          mainTitle: '+',
+        }"
+        @click="openAddDialog"
+      ></v-button>
+    </div>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -51,7 +75,7 @@ import vPart from '../components/detailPart.vue'
 import vButton from '../components/Button/Button.vue'
 import dynamicForm from '../components/dynamicForm/Form.vue'
 import { baseInfo, contact, formItemOption, part } from '../common/type/index'
-import { resumerHeader as header, baseInfoFormConfig, contactFormConfig, partFormConfig, drawerList, dialogList, partList } from '../common/api/data'
+import { resumerHeader as header, baseInfoFormConfig, contactFormConfig, partFormConfig, drawerList, partList, partForm } from '../common/api/data'
 
 export default defineComponent({
   components: {
@@ -64,6 +88,7 @@ export default defineComponent({
     //关于抽屉逻辑
     const drawerVisble = ref(false)
     const dialogVisble = ref(false)
+    const addDialogVisble = ref(false)
     const titles = ref()
     const partId = ref()
     const direction = ref() //抽屉打开方向
@@ -101,6 +126,12 @@ export default defineComponent({
       dialogVisble.value = true
     }
 
+    //打开新增弹窗
+    const openAddDialog = () => {
+      partFormConfig.formItemList[4].subType = reactive(partForm.partItemList)
+      addDialogVisble.value = true
+    }
+
     // 基本信息表单绑定
     const baseInfoInput = (e: baseInfo) => {
       Object.assign(header.baseInfo, e)
@@ -132,13 +163,25 @@ export default defineComponent({
       done()
     }
 
+    //删除
+    const deletePart = (partId: number) => {
+      console.log('partId', partId)
+      let index = partList.findIndex((item: part) => item.id === partId)
+      console.log('index', index)
+      partList.splice(index, 1)
+    }
+
+    const addPart = (part: part) => {
+      console.log('part', part)
+    }
+    console.log('partList', partList)
     return {
       drawerVisble,
       dialogVisble,
+      addDialogVisble,
       titles,
       partId,
       drawerList,
-      dialogList,
       baseInfoFormConfig,
       contactFormConfig,
       partFormConfig,
@@ -149,11 +192,15 @@ export default defineComponent({
       contactForm,
       openDrawer,
       openDialog,
+      openAddDialog,
       handleClose,
       baseInfoInput,
       contactInput,
       partInput,
+      deletePart,
+      addPart,
       partList,
+      partForm,
     }
   },
 })

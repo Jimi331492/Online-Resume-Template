@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-13 16:33:43
+ * @LastEditTime: 2021-12-15 14:37:56
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -19,7 +19,7 @@
       <div class="job">
         <h2>{{ baseInfo.job }}</h2>
         <div class="avartor">
-          <input type="file" class="file-input" d="file" name="file" accept="image/*" ref="input" @change="chooseAva($event)" />
+          <input type="file" class="file-input" d="file" name="file" title="选择头像" accept="image/*" ref="input" @change="chooseAva($event)" />
           <div class="file-icon"><span>选择头像</span></div>
           <img src="https://cdn.jsdelivr.net/gh/Jimi331492/cdn@1.2/img/custom/avatar.jpg" alt="" class="file-img" ref="avaImg" />
         </div>
@@ -37,7 +37,8 @@
         <h3>{{ baseInfo.edu }} <span v-show="baseInfo.edu !== '' && baseInfo.edu_time !== ''">/</span> {{ baseInfo.edu_time }}</h3>
 
         <p>
-          <a target="_blank" :href="baseInfo.school_url"> {{ baseInfo.school }} </a><span v-show="baseInfo.school !== '' && baseInfo.subject !== ''">/</span>
+          <a target="_blank" :href="baseInfo.school_url" :title="baseInfo.school_url"> {{ baseInfo.school }} </a
+          ><span v-show="baseInfo.school !== '' && baseInfo.subject !== ''">/</span>
           {{ baseInfo.subject }}
         </p>
       </section>
@@ -46,8 +47,8 @@
         <ul>
           <li v-for="item in contact" :key="item.key">
             <a :href="item.href" target="_blank" v-show="item.href !== ''">
-              <span v-if="item.value === ''">{{ item.key }}</span>
-              <span v-else>{{ item.value }}</span>
+              <span :title="item.href" v-if="item.value === ''">{{ item.key }}</span>
+              <span :title="item.href" v-else>{{ item.value }}</span>
               <i :class="'iconfont ' + item.icon"></i>
             </a>
           </li>

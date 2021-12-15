@@ -3,12 +3,12 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-14 16:21:39
+ * @LastEditTime: 2021-12-15 13:53:23
  * @LastEditors: Please set LastEditors
  */
 
 import { reactive } from 'vue'
-import { formConfigObject, formItemConfig, buttonItem, header, part, partItem } from '../type/index'
+import { formConfigObject, formItemConfig, header, part, partItem } from '../type/index'
 //设置Header
 export const resumerHeader: header = reactive({
   baseInfo: {
@@ -82,7 +82,7 @@ export const baseInfoFormConfig: formConfigObject = reactive({
     { label: '学历', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'edu' },
     { label: '毕业时间', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'edu_time' },
     { label: '学校', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'school' },
-    { label: '学校链接', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'school_url' },
+    { label: '学校链接', type: 'textarea', value: '', placeholder: '请输入', subType: '', key: 'school_url' },
     { label: '专业', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'subject' },
   ] as Array<formItemConfig>,
 })
@@ -94,8 +94,8 @@ export const contactFormConfig: formConfigObject = reactive({
   formItemList: [
     { label: '手机号', type: 'input', value: '', placeholder: '请输入手机号', subType: '', key: 'iPhone' },
     { label: '邮箱', type: 'input', value: '', placeholder: '请输入邮箱', subType: '', key: 'Email' },
-    { label: 'GitHub', type: 'input', value: '', placeholder: '请输入GitHub', subType: '', key: 'GitHub' },
-    { label: '个人博客', type: 'input', value: '', placeholder: '请输入博客地址', subType: '', key: '个人博客' },
+    { label: 'GitHub', type: 'textarea', value: '', placeholder: '请输入GitHub', subType: '', key: 'GitHub' },
+    { label: '个人博客', type: 'textarea', value: '', placeholder: '请输入博客地址', subType: '', key: '个人博客' },
   ] as Array<formItemConfig>,
 })
 
@@ -112,7 +112,7 @@ export const partFormConfig: formConfigObject = reactive({
     { label: '段落标题', type: 'input', value: '', placeholder: '请输入标题', subType: 0, key: 'title' },
     { label: '段落描述', type: 'input', value: '', placeholder: '请输入描述', subType: 0, key: 'btnHtml' },
     { label: '段落说明', type: 'input', value: '', placeholder: '请输入说明', subType: 0, key: 'remark' },
-    { label: '段落内容', type: 'input', value: '', placeholder: '请输入内容', subType: 0, key: 'value' },
+    { label: '段落内容', type: 'textarea', value: '', placeholder: '请输入内容', subType: 0, key: 'value' },
   ] as Array<formItemConfig>,
 })
 
@@ -204,29 +204,25 @@ export const partList: Array<part> = reactive([
   },
 ])
 
-export const drawerList: Array<buttonItem> = reactive([
+export const partForm: part = reactive({
+  // 设置专业技能
+  id: -1,
+  childId: 0,
+  mainTitle: '',
+  partItemList: [
+    {
+      parentId: 0,
+      itemId: 0,
+      value: '',
+      tags: {},
+    },
+  ] as Array<partItem>,
+})
+
+export const drawerList = reactive([
   {
-    title: '基本信息',
-    bottom: 600,
+    mainTitle: '基本信息',
     direction: 'rtl',
   },
-  {
-    title: '联系方式',
-    bottom: 500,
-    direction: 'ltr',
-  },
-])
-
-export const dialogList: Array<buttonItem> = reactive([
-  {
-    id: 0,
-    title: '专业技能',
-    bottom: 400,
-  },
-  { id: 1, title: '实习经历', bottom: 300 },
-  {
-    id: 2,
-    title: '+',
-    bottom: 200,
-  },
+  { mainTitle: '联系方式', direction: 'ltr' },
 ])

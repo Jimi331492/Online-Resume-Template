@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-14 19:43:26
+ * @LastEditTime: 2021-12-15 19:00:56
  * @LastEditors: Please set LastEditors
  */
 export interface baseInfo {
@@ -52,8 +52,8 @@ export interface part {
 }
 
 export interface buttonItem {
-  title: string
-  bottom: number
+  mainTitle: string
+  id: number
   direction?: string
 }
 
@@ -80,6 +80,7 @@ export interface formItemOption {
 export interface inputOption {
   [index: string]: string | number
 }
+
 export interface radioOption {
   [index: string]: number
 }

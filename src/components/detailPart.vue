@@ -3,14 +3,18 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-12 19:02:11
+ * @LastEditTime: 2021-12-15 14:34:20
  * @LastEditors: Please set LastEditors
 -->
 <template>
   <section id="section">
     <header class="section-header">
       <span class="section-title-l"></span>
-      <h2 class="section-title">{{ part.mainTitle }}</h2>
+      <h2 class="section-title">
+        {{ part.mainTitle }}
+        <span class="iconfont icon-shanchu1" :title="'删除' + part.mainTitle" @click="deletePart"></span>
+      </h2>
+
       <span class="section-title-r"></span>
     </header>
 
@@ -50,7 +54,7 @@ export default defineComponent({
       require: true,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     // console.log('props', props.infoList)
     // 插入字符串
     function insertStr(soure: string, start: number, newStr: string): string {
@@ -69,7 +73,14 @@ export default defineComponent({
         item.value = str.toString()
       }
     })
-    return {}
+
+    // 删除段落
+    const deletePart = () => {
+      console.log('props', props)
+      console.log('compent', props.part?.id)
+      emit('delete', props.part?.id)
+    }
+    return { deletePart }
   },
 })
 </script>
