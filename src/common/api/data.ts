@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-15 21:56:23
+ * @LastEditTime: 2021-12-16 03:59:35
  * @LastEditors: Please set LastEditors
  */
 
@@ -53,20 +53,20 @@ export const resumerHeader: header = reactive({
   ],
 })
 
-const sexOption = [
-  {
-    label: '男',
-    value: '男',
-  },
-  {
-    label: '女',
-    value: '女',
-  },
-  {
-    label: 'NULL',
-    value: '',
-  },
-]
+// const sexOption = [
+//   {
+//     label: '男',
+//     value: '男',
+//   },
+//   {
+//     label: '女',
+//     value: '女',
+//   },
+//   {
+//     label: 'NULL',
+//     value: '',
+//   },
+// ]
 
 export const baseInfoFormConfig: formConfigObject = reactive({
   labelWidth: '70px',
@@ -76,7 +76,7 @@ export const baseInfoFormConfig: formConfigObject = reactive({
     { label: '姓名', type: 'input', value: '', placeholder: '请输入姓名', subType: '', key: 'name' },
     { label: '英文名', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'E_name' },
     { label: '意向职位', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'job' },
-    { label: '性别', type: 'select', value: '', placeholder: '请选择', subType: sexOption, key: 'sex' },
+    { label: '性别', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'sex' },
     { label: '年龄', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'birth' },
     { label: '户籍', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'hometown' },
     { label: '学历', type: 'input', value: '', placeholder: '请输入', subType: '', key: 'edu' },

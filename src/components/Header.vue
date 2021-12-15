@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-15 14:37:56
+ * @LastEditTime: 2021-12-16 03:57:19
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -29,11 +29,11 @@
     <div class="clearfix">
       <!-- 基本信息+教育信息 -->
       <section class="info">
-        <h2>
+        <h3>
           {{ baseInfo.sex }} <span v-show="baseInfo.sex !== '' && baseInfo.birth !== ''">/</span> {{ baseInfo.birth }}
           <span v-show="baseInfo.hometown !== '' && baseInfo.birth !== ''">/</span>
           {{ baseInfo.hometown }}
-        </h2>
+        </h3>
         <h3>{{ baseInfo.edu }} <span v-show="baseInfo.edu !== '' && baseInfo.edu_time !== ''">/</span> {{ baseInfo.edu_time }}</h3>
 
         <p>
