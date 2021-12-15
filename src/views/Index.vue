@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-15 16:25:34
+ * @LastEditTime: 2021-12-16 02:44:13
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -23,21 +23,22 @@
   </div>
 
   <!-- 抽屉区域 -->
-  <el-drawer v-model="drawerVisble" :title="titles" :direction="direction" :before-close="handleClose">
+  <el-drawer v-model="drawerVisible" :title="titles" :direction="direction" :before-close="handleClose">
     <dynamic-form :formConfig="baseInfoFormConfig" :value="header.baseInfo" @mychange="baseInfoInput" v-if="titles === '基本信息'"></dynamic-form>
     <dynamic-form :formConfig="contactFormConfig" :value="contactForm" @mychange="contactInput" v-if="titles === '联系方式'"></dynamic-form>
   </el-drawer>
 
   <!-- 弹窗区域 -->
-  <el-dialog v-model="dialogVisble" :title="titles" :lock-scroll="false">
+  <el-dialog v-model="dialogVisible" :title="titles" :lock-scroll="false">
     <template v-for="item in partList" :key="item.id">
-      <dynamic-form :formConfig="partFormConfig" :value="item" @mychange="partInput" ref="partRef" v-if="item.id === partId"></dynamic-form>
+      <dynamic-form :formConfig="partFormConfig" :value="item" @mychange="partInput" v-if="item.id === partId"></dynamic-form>
     </template>
   </el-dialog>
 
   <!-- 弹窗区域 -->
-  <el-dialog v-model="addDialogVisble" title="添加段落" :lock-scroll="false">
-    <dynamic-form :formConfig="partFormConfig" :value="partForm" @mychange="partInput" ref="partRef"></dynamic-form>
+  <el-dialog v-model="addDialogVisible" title="添加段落" :lock-scroll="false" @closed="addDialogClosed">
+    {{ addFormKey }}
+    <dynamic-form :formConfig="addFormConfig" :value="addForm" :key="addFormKey" @mychange="partInput"></dynamic-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="addDialogVisible = false">取 消</el-button>
@@ -74,7 +75,7 @@ import vHeader from '../components/Header.vue'
 import vPart from '../components/detailPart.vue'
 import vButton from '../components/Button/Button.vue'
 import dynamicForm from '../components/dynamicForm/Form.vue'
-import { baseInfo, contact, formItemOption, part } from '../common/type/index'
+import { baseInfo, contact, formItemOption, part, formConfigObject } from '../common/type/index'
 import { resumerHeader as header, baseInfoFormConfig, contactFormConfig, partFormConfig, drawerList, partList, partForm } from '../common/api/data'
 
 export default defineComponent({
@@ -85,20 +86,26 @@ export default defineComponent({
     'dynamic-form': dynamicForm,
   },
   setup() {
-    //关于抽屉逻辑
-    const drawerVisble = ref(false)
-    const dialogVisble = ref(false)
-    const addDialogVisble = ref(false)
-    const titles = ref()
-    const partId = ref()
+    //关于抽屉,修改基本信息以及联系方式通过表单修改逻辑
+    const drawerVisible = ref(false)
     const direction = ref() //抽屉打开方向
-    const partRef: Ref = ref(null)
 
-    let formModel = reactive({})
-    // 格式化contactForm
+    //打开抽屉
+    const openDrawer = (title: string, dir: string): void => {
+      titles.value = title
+      drawerVisible.value = true
+      direction.value = dir
+    }
+
+    // 抽屉关闭的回调
+    const handleClose = (done: FunctionConstructor) => {
+      done()
+    }
+
+    let formModel = reactive({}) //contact扁平化之后的容器
+    // 扁平化contactForm
     let contactForm = computed(() => {
       let form: formItemOption = {}
-
       for (let i in header.contact) {
         form = {
           ...form,
@@ -106,45 +113,38 @@ export default defineComponent({
         }
       }
       formModel = reactive(form)
-
       return formModel
     })
 
-    //打开抽屉
-    const openDrawer = (title: string, dir: string): void => {
-      titles.value = title
-      drawerVisble.value = true
-      direction.value = dir
+    // 通过emit事件修改基本信息和联系方式
+    const baseInfoInput = (e: baseInfo) => {
+      Object.assign(header.baseInfo, e)
     }
+    const contactInput = (form: formItemOption) => {
+      const newContact = Object.entries(form)
+      header.contact.forEach((item: contact, i: number) => {
+        item.href = newContact[i][1]
+        item.value = item.key === 'iPhone' || item.key === 'Email' ? newContact[i][1].slice(newContact[i][1].indexOf(':') + 1) : ''
+      })
+    }
+
+    //关于弹窗逻辑
+    const titles = ref() //弹窗标题
+    const partId = ref() //段落id
+    const dialogVisible = ref(false)
+
+    //关于添加段落的逻辑
+    const addDialogVisible = ref(false)
+    let addForm: part = reactive({ ...partForm }) //初始化addForm和addFormConfig
+    let addFormConfig: formConfigObject = reactive(partFormConfig)
+    let addFormKey: Ref<number> = ref(new Date().valueOf()) //初始化key
 
     //打开弹窗
     const openDialog = (title: string, id: number): void => {
       titles.value = title
       partId.value = id
       partFormConfig.formItemList[4].subType = reactive(partList[id].partItemList)
-
-      dialogVisble.value = true
-    }
-
-    //打开新增弹窗
-    const openAddDialog = () => {
-      partFormConfig.formItemList[4].subType = reactive(partForm.partItemList)
-      addDialogVisble.value = true
-    }
-
-    // 基本信息表单绑定
-    const baseInfoInput = (e: baseInfo) => {
-      Object.assign(header.baseInfo, e)
-    }
-
-    // 联系方式表单绑定
-    const contactInput = (form: formItemOption) => {
-      const newContact = Object.entries(form)
-
-      header.contact.forEach((item: contact, i: number) => {
-        item.href = newContact[i][1]
-        item.value = item.key === 'iPhone' || item.key === 'Email' ? newContact[i][1].slice(newContact[i][1].indexOf(':') + 1) : ''
-      })
+      dialogVisible.value = true
     }
 
     const partInput = (part: part) => {
@@ -154,53 +154,82 @@ export default defineComponent({
       }
       //??//给段落描述和段落内容添加按钮和强调样式
 
-      // 修改virtualPartList
-      Object.assign(partList[part.id], part)
+      if (addDialogVisible.value) {
+        // 新增
+        Object.assign(addForm, part)
+      } else {
+        // 不是新增
+        // 修改virtualPartList
+        Object.assign(partList[part.id], part)
+      }
     }
 
-    // 抽屉关闭的回调
-    const handleClose = (done: FunctionConstructor) => {
-      done()
+    //打开新增弹窗
+    const openAddDialog = () => {
+      const id: number = partList[partList.length - 1].id + 1
+      // 重置
+      addForm = reactive({ ...partForm })
+      //将partList最后一项的id+1给新增的作为partId
+      addForm.id = id
+      addFormConfig.formItemList[4].subType = reactive(partForm.partItemList)
+
+      addDialogVisible.value = true
+    }
+
+    // 修改key刷新组件
+    const addDialogClosed = () => {
+      addFormKey.value = new Date().valueOf()
     }
 
     //删除
     const deletePart = (partId: number) => {
-      console.log('partId', partId)
-      let index = partList.findIndex((item: part) => item.id === partId)
-      console.log('index', index)
+      const index = partList.findIndex((item: part) => item.id === partId)
       partList.splice(index, 1)
     }
 
-    const addPart = (part: part) => {
-      console.log('part', part)
+    const addPart = () => {
+      const id: number = partList[partList.length - 1].id + 1
+      addForm.id = id
+      // 添加
+      partList.push({ ...addForm })
+      addDialogVisible.value = false
     }
-    console.log('partList', partList)
+
     return {
-      drawerVisble,
-      dialogVisble,
-      addDialogVisble,
-      titles,
-      partId,
-      drawerList,
-      baseInfoFormConfig,
-      contactFormConfig,
-      partFormConfig,
+      //数据
       header,
+      partList,
+      //公共的
+      titles,
+      //抽屉及基本信息与联系方式
+      drawerVisible,
       direction,
-      partRef,
-      formModel,
+      baseInfoFormConfig,
       contactForm,
+      contactFormConfig,
       openDrawer,
-      openDialog,
-      openAddDialog,
       handleClose,
       baseInfoInput,
       contactInput,
+      formModel,
+      //弹窗与段落
+      partId,
+      partFormConfig,
+      dialogVisible,
+      openDialog,
       partInput,
+      //新增弹窗和新增段落
+      addDialogVisible,
+      openAddDialog,
+      addDialogClosed,
       deletePart,
       addPart,
-      partList,
-      partForm,
+      addForm,
+      addFormKey,
+      addFormConfig,
+
+      //导航按钮
+      drawerList,
     }
   },
 })

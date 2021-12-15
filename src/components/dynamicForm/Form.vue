@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 16:59:21
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\Form.vue
- * @LastEditTime: 2021-12-15 19:40:59
+ * @LastEditTime: 2021-12-16 01:50:11
  * @LastEditors: Please set LastEditors
 -->
 
@@ -17,6 +17,7 @@
       @myselect="handleSelect"
       @myradio="handleRadio"
       @deleteItem="handleDelteItem"
+      @addItem="handleAddItem"
     >
     </dynamic-form-item>
   </el-form>
@@ -24,8 +25,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, ref, Ref } from 'vue'
+
 import dynamicFormItem from './formItem.vue'
-import { formItemOption, formItemConfig, inputOption, radioOption, partItem, part } from '../../common/type/index'
+import { formItemOption, formItemConfig, inputOption, radioOption, partItem } from '../../common/type/index'
 import { ElMessage } from 'element-plus'
 // 注册表单配置项
 
@@ -45,9 +47,8 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    // 复制partValue
+    // 复制partValue 和formConfig
     const virtualValue = reactive(JSON.parse(JSON.stringify(props.value)))
-    // 复制formConfig
     const virtualConfig = reactive(JSON.parse(JSON.stringify(props.formConfig)))
 
     // 监听virtualItem的value属性
@@ -59,22 +60,21 @@ export default defineComponent({
         virtualConfig.formItemList[val.index as number][val.key as string] = val.value
       },
     })
-    ///获取当前子段落下标
+
+    ///获取当前子段落id
     const childId: Ref<number> = ref(virtualValue.childId)
-    console.log('childId', childId)
+
     // 声明子段落
     let index: number
-    let childSection = reactive([])
+    let childSection: Array<partItem> = reactive([])
     // 利用try-catch中断foreach循环
     try {
       // 循环给formItemList赋值传给formItem子组件
       virtualConfig.formItemList.forEach((item: formItemConfig, i: number) => {
-        console.log('item', item)
         item.value = virtualValue[item.key]
         if (item.label === '段落') {
           //保存子段落
-          childSection = reactive(JSON.parse(JSON.stringify(item.subType)))
-          // console.log('childSection', childSection)
+          childSection = JSON.parse(JSON.stringify(item.subType))
           index = i
           // 抛出异常中断循环
           throw new Error('找到子段落了,不用再循环赋值了' + index)
@@ -82,9 +82,14 @@ export default defineComponent({
       })
     } catch (error) {
       // 找到当前子段落
-      let curChildSeciton = childSection[childId.value]
+
+      let curIndex = childSection.findIndex((e: partItem) => {
+        return e.itemId === childId.value
+      })
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let curChildSeciton: any = childSection[curIndex]
       if (curChildSeciton !== undefined) {
-        // console.log('curChildSeciton', curChildSeciton)
         //重新循环
         for (let i = 5, j = 0; i < 9; i++, j++) {
           let item = virtualConfig.formItemList[i]
@@ -108,10 +113,9 @@ export default defineComponent({
 
     // 承上启下的作用 接收子组件change事件改变表单，向上emit change事件改变视图
     const handleInput = (option: inputOption) => {
-      console.log('option', option)
       // 拿到修改的key和value
       let key: string = Object.keys(option)[0]
-      console.log('virtualValuebeFore', virtualValue)
+
       virtualConfig.formItemList.forEach((item: inputOption) => {
         // 修改的为子段落
         if (typeof item.subType === 'number' && item.key === key) {
@@ -119,9 +123,6 @@ export default defineComponent({
           const itemId = item.subType
           // 找到当前下标
           const curIndex = virtualValue.partItemList.findIndex((e: partItem) => e.itemId === itemId)
-          console.log('itemId', itemId)
-          console.log('virtualValue', virtualValue)
-          console.log('virtualValue', virtualConfig.formItemList)
 
           // 将修改保存
           virtualConfig.formItemList[4].subType[curIndex] = Object.assign(virtualValue.partItemList[curIndex], option) // 给模拟数据赋值，最后emit出去修改视图
@@ -133,7 +134,7 @@ export default defineComponent({
           Object.assign(virtualValue, option) // 给模拟数据赋值，最后emit出去修改视图
         }
       })
-      console.log('virtualValue', virtualValue)
+
       emit('mychange', { ...virtualValue })
     }
 
@@ -145,7 +146,6 @@ export default defineComponent({
     //
     // 点击按钮切换段落
     const handleRadio = (option: radioOption) => {
-      console.log(option)
       // 修改key让组件重新渲染
       // 获取到当前子段落数组
       const subType: Array<partItem> = virtualConfig.formItemList[4].subType
@@ -157,7 +157,6 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const curChildSeciton: partItem | any = subType[curIndex]
       // const length = subType.length
-      console.log('subType', subType)
 
       // 修改当前input表单项subType的值为当前子段落的id
       virtualConfig.formItemList.forEach((item: formItemConfig) => {
@@ -205,17 +204,15 @@ export default defineComponent({
         //如果删除的子段落Index为最后一个
         if (index === length - 1) {
           nextId = subType[0].itemId
-          console.log('1')
         } else {
           nextId = subType[index + 1].itemId
         }
-        console.log('nextId', nextId)
+
         // 找到nextIndex
         const nextIndex = subType.findIndex((e) => e.itemId === nextId)
         // 找到下一个子段落
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const nextChildSeciton: partItem | any = subType[nextIndex]
-        console.log('nextChildSeciton', nextChildSeciton)
 
         virtualConfig.formItemList.forEach((item: formItemConfig) => {
           if (typeof item.subType === 'number') {
@@ -231,13 +228,8 @@ export default defineComponent({
           value: childId.value,
         }
 
-        console.log('deleteBefore', subType)
-
-        console.log('index', index)
-
         // 删除更新表单选项组件
         subType.splice(index, 1)
-        console.log('deleteAfter', subType)
 
         // 重新循环子段落更新输入框
         for (let i = 5, j = 0; i < 9; i++, j++) {
@@ -258,7 +250,17 @@ export default defineComponent({
       }
     }
 
-    return { handleInput, handleSelect, handleRadio, formItemObserv, childId, handleDelteItem }
+    const handleAddItem = (partItemList: Array<partItem>) => {
+      const lastId = partItemList[partItemList.length - 1].itemId
+      partItemList.push({
+        parentId: 0,
+        itemId: lastId + 1,
+        value: '',
+        tags: {},
+      })
+    }
+
+    return { handleInput, handleSelect, handleRadio, formItemObserv, childId, handleDelteItem, handleAddItem }
   },
 })
 </script>

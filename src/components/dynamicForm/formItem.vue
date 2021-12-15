@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-15 16:59:06
+ * @LastEditTime: 2021-12-16 02:44:47
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -28,14 +28,14 @@
           ></i>
         </el-radio>
       </template>
-      <i class="iconfont icon-roundaddfill" :title="'添加子段落' + itemConfig.subType.length" @click="addPartItem"></i>
+      <i class="iconfont icon-roundaddfill" :title="'添加子段落' + itemConfig.subType.length" @click="addPartItem(itemConfig.subType)"></i>
     </el-radio-group>
   </el-form-item>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, reactive } from 'vue'
-
+import { partItem } from '../../common/type/index'
 export default defineComponent({
   name: 'dynamicFormItem',
   props: {
@@ -54,13 +54,11 @@ export default defineComponent({
       },
       set(val: string) {
         virtualItem.value = val
-        console.log('form-item-set_val', virtualItem.value)
       },
     })
 
     const handleInput = (value: string) => {
       virtualValue.value = value // 改变输入框里的值
-      console.log('value', value)
       emit('myinput', { [props.itemConfig?.key]: value }) // emit改变part的值
     }
     const handleSelect = (value: string) => {
@@ -68,19 +66,17 @@ export default defineComponent({
     }
 
     const handleRadio = (value: number) => {
-      console.log('handleRadio', value)
       emit('myradio', { [props.itemConfig?.key]: value })
     }
 
     // 删除子段落
     const deletePartItem = (itemId: number) => {
-      console.log('itemId', itemId)
       emit('deleteItem', { itemId: itemId })
     }
 
     // 添加子段落
-    const addPartItem = () => {
-      console.log('addPartItem')
+    const addPartItem = (parthItemList: Array<partItem>) => {
+      emit('addItem', parthItemList)
     }
     return { virtualItem, handleInput, handleSelect, handleRadio, deletePartItem, addPartItem }
   },
