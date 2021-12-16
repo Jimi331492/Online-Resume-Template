@@ -1,9 +1,24 @@
-.theme {
-  --mainTheme: #141414;
+.gradient_0 {
+  background: var(--gradient, linear-gradient(90deg, #00c9b8 0%, #00bdc4 100%));
 }
-.theme {
-  --mainTheme: #00b38a;
+.gradient_1 {
+  background: var(--gradient, linear-gradient(to right, #ff9569 0%, #e92758 100%));
 }
-.light-theme {
-  --mainTheme: #f4f4f4;
+.gradient_2 {
+  background: var(--gradient, linear-gradient(90deg, #29bdd9 0%, #276ace 100%));
+}
+.gradient_3 {
+  background: var(--gradient, linear-gradient(90deg, #fad0c4 0%, #fad0c4 1%, #ffd1ff 100%));
+}
+.gradient_4 {
+  background: var(--gradient, linear-gradient(-20deg, #6e45e2 0%, #88d3ce 100%));
+}
+.gradient_5 {
+  background: var(--gradient, linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%));
+}
+.gradient_6 {
+  background: var(--gradient, linear-gradient(90deg, #11998e, #38ef7d));
+}
+.gradient_7 {
+  background: var(--gradient, linear-gradient(-90deg, #c0c0aa, #1cefff));
 }

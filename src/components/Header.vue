@@ -3,11 +3,11 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-16 03:57:19
+ * @LastEditTime: 2021-12-16 22:14:34
  * @LastEditors: Please set LastEditors
 -->
 <template>
-  <header class="content-hd">
+  <header :class="`content-hd gradient_${theme}`">
     <section class="title clearfix">
       <!-- 姓名 -->
       <div class="name">
@@ -59,8 +59,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue'
-
+import { computed, defineComponent, Ref, ref } from 'vue'
+import { useStore } from 'vuex'
+import { key } from '../store'
 export default defineComponent({
   name: 'v-header',
   props: {
@@ -73,6 +74,14 @@ export default defineComponent({
   },
   /* eslint-disable */
   setup(props) {
+    // 切换主题
+    const store = useStore(key)
+    console.log('store', store.state)
+    const theme = computed(() => {
+      return store.state.themeIndex
+    })
+    console.log('themeIndex', theme.value)
+
     // console.log('props', props)
     let base: Ref = ref()
     const avaImg: Ref = ref(null)
@@ -101,7 +110,7 @@ export default defineComponent({
       }
     }
 
-    return { chooseAva, avaImg }
+    return { chooseAva, avaImg, theme }
   },
 })
 </script>

@@ -1,7 +1,6 @@
 @import './iconfont.css';
 @import './theme';
 @main_theme: var(--mainTheme, #00b38a);
-@gradient_color_start: var(--gradientColorStart, #00b38a);
 
 * {
   box-sizing: border-box;
@@ -184,7 +183,6 @@ body {
 .content-hd {
   color: white;
   background-color: @main_theme;
-  background: linear-gradient(90deg, #00c9b8 0%, #00bdc4 100%);
   padding: 10px 50px;
   a:hover {
     opacity: 0.8;
@@ -423,12 +421,26 @@ section.contact {
     height: 22px;
   }
 
-  .item-qr {
-    margin-bottom: -70px;
+  .item-link {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    transform: translate(0, -50%);
+    float: right;
+    width: 24px;
+    height: 24px;
+    clear: both !important;
+ 
+  }
 
+  .item-qr {
+    float: right;
+    right: 0;
+    // margin-bottom: -70px;
+    z-index: 10;
     .item-qr-hd {
       float: left;
-      position: relative;
+      position: absolute;
       padding: 8px 0 5px;
       font-weight: 500;
       line-height: 32px;
@@ -439,7 +451,6 @@ section.contact {
 
       img {
         width: 80px;
-
         &:hover {
           opacity: 0.8;
         }
@@ -506,15 +517,7 @@ h4.item-name {
   }
 }
 
-.icon-link {
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 22px;
-}
 
-.icon-link:hover {
-  background-color: #ddd;
-}
 
 .works-item {
   margin-top: 5px;

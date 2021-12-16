@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-16 19:24:32
+ * @LastEditTime: 2021-12-17 01:59:39
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -102,13 +102,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, Ref, computed, h, getCurrentInstance } from 'vue'
+import { defineComponent, reactive, ref, Ref, computed, h } from 'vue'
 import { useStore } from 'vuex'
 import { key } from '../store'
 import vHeader from '../components/Header.vue'
 import vPart from '../components/detailPart.vue'
 import vButton from '../components/Button/Button.vue'
-
 import dynamicForm from '../components/dynamicForm/Form.vue'
 import { baseInfo, contact, formItemOption, part, formConfigObject } from '../common/type/index'
 import { baseInfoFormConfig, contactFormConfig, partFormConfig, drawerList, partForm, resumerHeader, partList as rePartList } from '../common/api/data'
@@ -138,6 +137,7 @@ export default defineComponent({
     const resetPartList = () => {
       store.commit('setPartList', virtualPartList)
     }
+    console.log('partList', partList)
     // 点击确认重置数据
     const showConfirm = () => {
       ElMessageBox({
@@ -164,6 +164,7 @@ export default defineComponent({
         // 重置
         resetHeader()
         resetPartList()
+        store.commit('reset')
         // 关闭编辑模式
         document.designMode = 'off'
         design.value = false
@@ -219,9 +220,10 @@ export default defineComponent({
     }
 
     // 点击修改主题色
-    const theme = ref()
-    const changeColor = () => {
-      console.log('1')
+
+    const changeTheme = () => {
+      console.log('change')
+      store.commit('addThemeIndex')
     }
     // 点击修改主题色
     const isInline = ref(true)
@@ -360,9 +362,9 @@ export default defineComponent({
       drawerList,
       designModel,
       design,
-      theme,
+
       isInline,
-      changeColor,
+      changeTheme,
       changeFormat,
     }
   },

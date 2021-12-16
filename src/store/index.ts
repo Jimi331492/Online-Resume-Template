@@ -3,7 +3,7 @@
  * @Date: 2021-12-06 18:19:32
  * @Description:
  * @FilePath: \resume-ts-template\src\store\index.ts
- * @LastEditTime: 2021-12-16 04:07:45
+ * @LastEditTime: 2021-12-16 22:19:13
  * @LastEditors: Please set LastEditors
  */
 import { InjectionKey } from 'vue'
@@ -14,6 +14,7 @@ import { resumerHeader, partList } from '../common/api/data'
 export interface GlobalDataProps {
   header: header
   partList: Array<part>
+  themeIndex: number
 }
 
 // 定义 injection key
@@ -23,6 +24,7 @@ export const store = createStore<GlobalDataProps>({
   state: {
     header: resumerHeader,
     partList: partList,
+    themeIndex: 0,
   },
   mutations: {
     setHeader(state, header) {
@@ -32,6 +34,17 @@ export const store = createStore<GlobalDataProps>({
     setPartList(state, partList) {
       // console.log('header', header)
       state.partList = partList
+    },
+    addThemeIndex(state) {
+      // console.log('header', header)
+      state.themeIndex = (state.themeIndex + 1) % 8
+      console.log('thmemIndex', state.themeIndex)
+    },
+    reset(state) {
+      sessionStorage.clear()
+      state.header = resumerHeader
+      state.partList = partList
+      state.themeIndex = 0
     },
   },
 })
