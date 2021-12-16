@@ -3,59 +3,50 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body,
 html,
 #app {
   height: 100%;
   width: 100%;
 }
-
 /* 隐藏滚动条 */
 ::-webkit-scrollbar {
   display: none;
 }
-
 #el-drawer__title {
   color: #fff;
 }
-.el-drawer {
-  .el-input__inner,
-  .el-textarea,
-  .el-input {
-    width: 300px;
-  }
+.el-drawer .el-input__inner,
+.el-drawer .el-textarea,
+.el-drawer .el-input {
+  width: 300px;
 }
-
 .el-dialog__title {
   color: #fff;
   width: 100%;
   margin-bottom: 0;
 }
-
 .el-dialog {
   width: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .el-input__inner,
-  .el-textarea,
-  .el-input {
-    width: 300px;
-  }
 }
-
+.el-dialog .el-input__inner,
+.el-dialog .el-textarea,
+.el-dialog .el-input {
+  width: 300px;
+}
 .el-drawer,
 .el-dialog {
-  label {
-    color: #fff;
-  }
   min-width: 430px;
   background: rgba(255, 255, 255, 0.3) !important;
 }
-
+.el-drawer label,
+.el-dialog label {
+  color: #fff;
+}
 .icon-shanchu1 {
-  //绝对定位居中
   position: absolute;
   top: 52%;
   left: 87%;
@@ -65,7 +56,6 @@ html,
   cursor: pointer;
   color: #00b3fa !important;
 }
-
 .btnArea {
   position: fixed;
   top: 0;
@@ -75,37 +65,35 @@ html,
   height: 84%;
   display: flex;
   flex-direction: column;
-  .drawer-btn {
-    height: 26%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    .el-button {
-      margin: 0;
-    }
-  }
-  .dialog-btn {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    .el-button:last-child {
-      font-size: 36px;
-      text-align: center;
-      vertical-align: middle;
-    }
-    .el-button {
-      margin: 0;
-    }
-  }
+}
+.btnArea .drawer-btn {
+  height: 26%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.btnArea .drawer-btn .el-button {
+  margin: 0;
+}
+.btnArea .dialog-btn {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.btnArea .dialog-btn .el-button:last-child {
+  font-size: 36px;
+  text-align: center;
+  vertical-align: middle;
+}
+.btnArea .dialog-btn .el-button {
+  margin: 0;
 }
 .el-button {
   margin: 0;
 }
-.dialog-footer {
-  .el-button {
-    margin: 0 50px !important;
-  }
+.dialog-footer .el-button {
+  margin: 0 50px !important;
 }

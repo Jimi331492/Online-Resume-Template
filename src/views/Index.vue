@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-16 04:18:15
+ * @LastEditTime: 2021-12-16 19:24:32
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -12,36 +12,71 @@
     <v-header :baseInfo="header.baseInfo" :contact="header.contact"></v-header>
     <div class="content-bd">
       <!-- 简历左部 -->
-      <div class="content-left">
+      <div :class="isInline ? 'content-left' : 'content-inline'">
         <template v-for="item in partList.slice(0, 3)" :key="item.id">
           <v-part :part="item" @delete="deletePart"></v-part>
         </template>
       </div>
       <!-- 简历右部 -->
-      <div class="content-right">
+      <div :class="isInline ? 'content-right' : 'content-inline'">
         <template v-for="item in partList.slice(3, 6)" :key="item.id">
           <v-part :part="item" @delete="deletePart"></v-part>
         </template>
       </div>
     </div>
   </div>
+  <!-- 页脚 -->
   <footer class="github-footer">
-    <a class="footer-link" href="https://gitee.com/wu-sili/resume" target="_blank">
+    <a class="footer-link" href="https://github.com/Jimi331492/myResume" target="_blank">
       <i class="iconfont icon-link"></i>
-      简历Gitee仓库
+      简历GitHub仓库
     </a>
   </footer>
-  <div class="btn_wrap">
+  <!-- 功能按钮区域 -->
+  <div class="btn_wrap_top"></div>
+  <div class="btn_wrap_left">
+    <span class="pdf btn2" @click="changeTheme">
+      <i class="iconfont icon-pdf"></i>
+      更改主题</span
+    >
+    <span class="pdf btn2" @click="changeFormat">
+      <i class="iconfont icon-pdf"></i>
+      改变格式</span
+    >
     <a class="pdf btn2" href="resume.pdf">
       <i class="iconfont icon-pdf"></i>
       PDF简历
     </a>
-    <span class="edit btn2">编辑</span>
+  </div>
+
+  <div class="btn_wrap_right">
+    <span :class="!design ? 'edit btn2' : 'btn2 onEdit'" @click="designModel">{{ !design ? '编辑' : '退出编辑' }}</span>
     <span class="edit btn2" @click="showConfirm">重置</span>
   </div>
 
+  <!-- 按钮导航区域 -->
+  <nav class="btnArea">
+    <div class="drawer-btn">
+      <template v-for="(item, index) in drawerList" :key="index">
+        <v-button :context="item" @click="openDrawer(item.mainTitle, item.direction)"></v-button>
+      </template>
+    </div>
+    <div class="dialog-btn">
+      <template v-for="item in partList" :key="item.id">
+        <v-button :context="item" @click="openDialog(item.mainTitle, item.id)"></v-button>
+      </template>
+      <v-button
+        :context="{
+          mainTitle: '+',
+        }"
+        @click="openAddDialog"
+        v-show="partList.length < 6"
+      ></v-button>
+    </div>
+  </nav>
+
   <!-- 抽屉区域 -->
-  <el-drawer v-model="drawerVisible" :title="titles" :direction="direction" :before-close="handleClose">
+  <el-drawer v-model="drawerVisible" :title="titles" :direction="direction" :before-close="handleClose" :lock-scroll="false">
     <dynamic-form :formConfig="baseInfoFormConfig" :value="header.baseInfo" @mychange="baseInfoInput" v-if="titles === '基本信息'"></dynamic-form>
     <dynamic-form :formConfig="contactFormConfig" :value="contactForm" @mychange="contactInput" v-if="titles === '联系方式'"></dynamic-form>
   </el-drawer>
@@ -53,7 +88,7 @@
     </template>
   </el-dialog>
 
-  <!-- 弹窗区域 -->
+  <!-- 新增弹窗区域 -->
   <el-dialog v-model="addDialogVisible" title="添加段落" :lock-scroll="false" @closed="addDialogClosed">
     {{ addFormKey }}
     <dynamic-form :formConfig="addFormConfig" :value="addForm" :key="addFormKey" @mychange="partInput"></dynamic-form>
@@ -64,40 +99,20 @@
       </span>
     </template>
   </el-dialog>
-
-  <!-- 按钮区域 -->
-
-  <nav class="btnArea">
-    <div class="btnItem">
-      <template class="dialog-btn" v-for="(item, index) in drawerList" :key="index">
-        <v-button :context="item" @click="openDrawer(item.mainTitle, item.direction)"></v-button>
-      </template>
-      <template v-for="item in partList" :key="item.id">
-        <v-button class="dialog-btn" :context="item" @click="openDialog(item.mainTitle, item.id)"></v-button>
-      </template>
-
-      <v-button
-        class="dialog-btn"
-        :context="{
-          mainTitle: '+',
-        }"
-        @click="openAddDialog"
-        v-show="partList.length < 6"
-      ></v-button>
-    </div>
-  </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, Ref, computed } from 'vue'
+import { defineComponent, reactive, ref, Ref, computed, h, getCurrentInstance } from 'vue'
 import { useStore } from 'vuex'
 import { key } from '../store'
 import vHeader from '../components/Header.vue'
 import vPart from '../components/detailPart.vue'
 import vButton from '../components/Button/Button.vue'
+
 import dynamicForm from '../components/dynamicForm/Form.vue'
 import { baseInfo, contact, formItemOption, part, formConfigObject } from '../common/type/index'
 import { baseInfoFormConfig, contactFormConfig, partFormConfig, drawerList, partForm, resumerHeader, partList as rePartList } from '../common/api/data'
+import { ElMessageBox, ElMessage } from 'element-plus'
 
 export default defineComponent({
   components: {
@@ -123,10 +138,41 @@ export default defineComponent({
     const resetPartList = () => {
       store.commit('setPartList', virtualPartList)
     }
+    // 点击确认重置数据
     const showConfirm = () => {
-      console.log('1')
-      resetHeader()
-      resetPartList()
+      ElMessageBox({
+        title: '警告',
+        message: h('p', null, [h('span', null, '点击确认重置格式,将'), h('i', { style: 'color: teal' }, '无法恢复')]),
+        showCancelButton: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        beforeClose: (action, instance, done) => {
+          if (action === 'confirm') {
+            instance.confirmButtonLoading = true
+            instance.confirmButtonText = 'Loading...'
+            setTimeout(() => {
+              done()
+              setTimeout(() => {
+                instance.confirmButtonLoading = false
+              }, 50)
+            }, 500)
+          } else {
+            done()
+          }
+        },
+      }).then(() => {
+        // 重置
+        resetHeader()
+        resetPartList()
+        // 关闭编辑模式
+        document.designMode = 'off'
+        design.value = false
+
+        ElMessage({
+          type: 'success',
+          message: `重置成功!!`,
+        })
+      })
     }
 
     //关于抽屉,修改基本信息以及联系方式通过表单修改逻辑
@@ -170,6 +216,32 @@ export default defineComponent({
         item.href = newContact[i][1]
         item.value = item.key === 'iPhone' || item.key === 'Email' ? newContact[i][1].slice(newContact[i][1].indexOf(':') + 1) : ''
       })
+    }
+
+    // 点击修改主题色
+    const theme = ref()
+    const changeColor = () => {
+      console.log('1')
+    }
+    // 点击修改主题色
+    const isInline = ref(true)
+    const changeFormat = () => {
+      isInline.value = !isInline.value
+    }
+    // 点击开启编辑模式
+    const design = ref(false)
+    if (document.designMode === 'off') {
+      design.value = false
+    }
+    const designModel = () => {
+      console.log("document.designMode === 'off'", document.designMode === 'off')
+      if (document.designMode === 'off') {
+        document.designMode = 'on'
+        design.value = true
+      } else {
+        document.designMode = 'off'
+        design.value = false
+      }
     }
 
     //关于弹窗逻辑
@@ -286,6 +358,12 @@ export default defineComponent({
 
       //导航按钮
       drawerList,
+      designModel,
+      design,
+      theme,
+      isInline,
+      changeColor,
+      changeFormat,
     }
   },
 })

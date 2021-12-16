@@ -1,0 +1,9 @@
+.theme {
+  --mainTheme: #141414;
+}
+.theme {
+  --mainTheme: #00b38a;
+}
+.light-theme {
+  --mainTheme: #f4f4f4;
+}

@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-16 02:44:47
+ * @LastEditTime: 2021-12-16 15:46:53
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -44,6 +44,7 @@ export default defineComponent({
       require: true,
     },
   },
+
   setup(props, { emit }) {
     // 复制一个itemConfig
     let virtualItem = reactive(JSON.parse(JSON.stringify(props.itemConfig)))

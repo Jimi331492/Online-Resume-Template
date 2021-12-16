@@ -3,7 +3,7 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-15 14:34:20
+ * @LastEditTime: 2021-12-16 14:02:25
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -58,6 +58,9 @@ export default defineComponent({
     // console.log('props', props.infoList)
     // 插入字符串
     function insertStr(soure: string, start: number, newStr: string): string {
+      console.log('soure', soure)
+      console.log('start', start)
+      console.log('newStr', newStr)
       return soure.slice(0, start) + newStr + soure.slice(start)
     }
 
@@ -66,11 +69,14 @@ export default defineComponent({
       let value = item.value
 
       let str = new String(value)
-      for (let i in tags) {
-        let index: number = str.indexOf(i)
-        str = insertStr(str as string, index, '<' + tags[i] + '>')
-        str = insertStr(str as string, index + i.length + tags[i].length + 2, '</' + tags[i] + '>')
-        item.value = str.toString()
+      // 没有标签打标签
+      if (!/<\/?[^>]+>/g.test(value)) {
+        for (let i in tags) {
+          let index: number = str.indexOf(i)
+          str = insertStr(str as string, index, '<' + tags[i] + '>')
+          str = insertStr(str as string, index + i.length + tags[i].length + 2, '</' + tags[i] + '>')
+          item.value = str.toString()
+        }
       }
     })
 
