@@ -3,7 +3,7 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-17 15:25:13
+ * @LastEditTime: 2021-12-17 19:37:36
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -13,7 +13,7 @@
       <!-- 段落标题 -->
       <h2 class="section-title">
         {{ part.mainTitle }}
-        <span class="iconfont icon-delete-fill" :title="'删除' + virturlPart.mainTitle" @click="deletePart"></span>
+        <span class="iconfont icon-delete-fill" :title="'删除' + part.mainTitle" @click="deletePart"></span>
       </h2>
       <span class="section-title-r"></span>
     </header>
@@ -21,12 +21,12 @@
     <div class="section-body">
       <!-- 副标题 -->
       <header class="item-hd clearfix">
-        <h3 class="item-name">{{ virturlPart.subTitle }}</h3>
-        <span class="item-time">{{ virturlPart.subRemark }}</span>
-        <span v-html="virturlPart.subBtnHtml"></span>
+        <h3 class="item-name">{{ part.subTitle }}</h3>
+        <span class="item-time">{{ part.subRemark }}</span>
+        <span v-html="part.subBtnHtml"></span>
       </header>
 
-      <template v-for="item in virturlPart.partItemList" :key="item.itemId">
+      <template v-for="item in part.partItemList" :key="item.itemId">
         <div class="item">
           <header class="item-hd clearfix">
             <h4 class="item-name">{{ item.title }}</h4>
@@ -34,12 +34,12 @@
             <span v-html="item.btnHtml"></span>
             <!-- 添加二维码 -->
             <i
-              class="iconfont icon-add-link"
+              :class="`iconfont icon-add-link ${item.title && !(item.qr_img && item.qr_img !== '') ? '' : 'hide'}`"
               title="添加(二维码/链接)"
-              v-show="item.title && !(item.qr_img && item.qr_img !== '')"
               @click="showAddQqDialog(virturlPart.id, item.itemId)"
             ></i>
           </header>
+          <!-- v-show="item.title && !(item.qr_img && item.qr_img !== '')" -->
           <!-- 二维码 -->
           <div class="item item-qr clearfix">
             <div class="item-qr-code">
@@ -78,8 +78,8 @@
   </section>
 
   <!-- 弹窗区域 -->
-  <el-dialog v-model="linkDialogVisible" :title="titles" :lock-scroll="false">
-    <dynamic-form :formConfig="linkFormConfig" :value="addLinkForm" @mychange="linkInput"></dynamic-form>
+  <el-dialog v-model="linkDialogVisible" :title="titles" :lock-scroll="false" @close="closeAddDialog">
+    <dynamic-form :formConfig="linkFormConfig" :value="addLinkForm" :key="addFormKey" @mychange="linkInput"></dynamic-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="linkDialogVisible = false">取 消</el-button>
@@ -90,7 +90,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, reactive, ref, Ref } from 'vue'
 import { part, partItem } from '../common/type/index'
 import { linkFormConfig } from '../common/api/data'
 import dynamicForm from './dynamicForm/Form.vue'
@@ -99,7 +99,7 @@ export default defineComponent({
   components: {
     'dynamic-form': dynamicForm,
   },
-  emits: ['delete'],
+  emits: ['delete', 'addLink'],
   props: {
     part: {
       type: Object,
@@ -113,9 +113,6 @@ export default defineComponent({
     // console.log('props', props.infoList)
     // 插入字符串
     function insertStr(soure: string, start: number, newStr: string): string {
-      console.log('soure', soure)
-      console.log('start', start)
-      console.log('newStr', newStr)
       return soure.slice(0, start) + newStr + soure.slice(start)
     }
 
@@ -137,15 +134,13 @@ export default defineComponent({
 
     // 删除段落
     const deletePart = () => {
-      console.log('props', props)
-      console.log('compent', props.part?.id)
       emit('delete', props.part?.id)
     }
 
     //
     const linkDialogVisible = ref(false)
     const titles = ref('')
-    const addLinkForm: any = reactive({
+    let addLinkForm: any = reactive({
       partId: 0,
       itemId: 0,
       qr_img: '',
@@ -156,7 +151,7 @@ export default defineComponent({
       console.log('partId', partId)
       console.log('itemId', itemId)
       // 打开弹窗
-      const curItemIndex = virturlPart.partItemList.findIndex((e: partItem) => {
+      const curItemIndex = props.part?.partItemList.findIndex((e: partItem) => {
         return e.itemId === itemId
       })
       titles.value = virturlPart.partItemList[curItemIndex].title
@@ -166,30 +161,57 @@ export default defineComponent({
       linkDialogVisible.value = true
     }
 
-    const linkInput = (part: part) => {
+    const linkInput = (part: any) => {
       console.log('part', part)
-      Object.assign(addLinkForm, part)
+      part.itemId = addLinkForm.itemId
+      part.partId = addLinkForm.partId
       console.log('addLinkForm', addLinkForm)
+      addLinkForm = Object.assign({}, addLinkForm, part)
+      console.log('Object.assign(addLinkForm, part)', addLinkForm)
     }
     const addLink = () => {
-      console.log('form', addLinkForm)
-      const curItemIndex = virturlPart.partItemList.findIndex((e: partItem) => {
+      console.log('addLinkForm', addLinkForm)
+      const curItemIndex = props.part?.partItemList.findIndex((e: partItem) => {
         return e.itemId === addLinkForm.itemId
       })
-      Object.assign(virturlPart.partItemList[curItemIndex], addLinkForm)
-      console.log('virturlPart', virturlPart.value)
-      addLinkForm.value = {
+      console.log('curItemIndex', curItemIndex)
+      console.log('props.part?.partItemList[curItemIndex]', props.part?.partItemList[curItemIndex])
+      Object.assign(props.part?.partItemList[curItemIndex], addLinkForm)
+      console.log('virturlPart', virturlPart)
+      console.log(' Object.assign(props.part?.partItemList[curItemIndex], addLinkForm)', props.part?.partItemList[curItemIndex])
+      emit('addLink')
+
+      linkDialogVisible.value = false
+    }
+    //刷新组件
+    let addFormKey: Ref<number> = ref(new Date().valueOf()) //初始化key
+
+    const closeAddDialog = () => {
+      addFormKey.value = new Date().valueOf()
+      addLinkForm = {
         partId: 0,
         itemId: 0,
         qr_img: '',
         show_href: '',
         code_href: '',
       }
-      linkDialogVisible.value = false
     }
-    return { deletePart, showAddQqDialog, virturlPart, linkFormConfig, linkDialogVisible, titles, addLinkForm, addLink, linkInput }
+
+    return { deletePart, showAddQqDialog, closeAddDialog, addFormKey, virturlPart, linkFormConfig, linkDialogVisible, titles, addLinkForm, addLink, linkInput }
   },
 })
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.icon-delete-fill {
+  //绝对定位居中
+  position: absolute;
+  top: 48%;
+  left: 88%;
+  transform: translate(-50%, -50%);
+}
+.icon-delete-fill:hover {
+  cursor: pointer;
+  color: #00b3fa !important;
+}
+</style>

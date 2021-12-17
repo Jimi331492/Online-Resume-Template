@@ -101,18 +101,6 @@ html,
   clear: both;
 }
 
-.icon-delete-fill {
-  //绝对定位居中
-  position: absolute;
-  top: 52%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-}
-.icon-delete-fill:hover {
-  cursor: pointer;
-  color: #00b3fa !important;
-}
-
 .icon-add-link {
   position: absolute;
   top: 0;
@@ -132,5 +120,12 @@ html,
   .add-form-item {
     width: 100%;
     height: 50px;
+  }
+}
+
+.hide {
+  opacity: 0;
+  &:hover {
+    opacity: 1;
   }
 }

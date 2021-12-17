@@ -90,16 +90,6 @@ html,
 .item {
   clear: both;
 }
-.icon-delete-fill {
-  position: absolute;
-  top: 52%;
-  left: 87%;
-  transform: translate(-50%, -50%);
-}
-.icon-delete-fill:hover {
-  cursor: pointer;
-  color: #00b3fa !important;
-}
 .icon-add-link {
   position: absolute;
   top: 0;
@@ -118,4 +108,10 @@ html,
 .add-qr-form .add-form-item {
   width: 100%;
   height: 50px;
+}
+.hide {
+  opacity: 0;
+}
+.hide:hover {
+  opacity: 1;
 }

@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 16:59:21
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\Form.vue
- * @LastEditTime: 2021-12-16 15:53:18
+ * @LastEditTime: 2021-12-17 19:15:26
  * @LastEditors: Please set LastEditors
 -->
 
@@ -113,6 +113,7 @@ export default defineComponent({
 
     // 承上启下的作用 接收子组件change事件改变表单，向上emit change事件改变视图
     const handleInput = (option: inputOption) => {
+      console.log('option', option)
       // 拿到修改的key和value
       let key: string = Object.keys(option)[0]
 
@@ -134,7 +135,7 @@ export default defineComponent({
           Object.assign(virtualValue, option) // 给模拟数据赋值，最后emit出去修改视图
         }
       })
-
+      console.log('virtualValue', virtualValue)
       emit('mychange', { ...virtualValue })
     }
 

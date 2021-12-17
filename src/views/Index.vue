@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-17 12:06:44
+ * @LastEditTime: 2021-12-17 19:24:39
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -90,7 +90,6 @@
 
   <!-- 新增弹窗区域 -->
   <el-dialog v-model="addDialogVisible" title="添加段落" :lock-scroll="false" @closed="addDialogClosed">
-    {{ addFormKey }}
     <dynamic-form :formConfig="addFormConfig" :value="addForm" :key="addFormKey" @mychange="partInput"></dynamic-form>
     <template #footer>
       <span class="dialog-footer">
@@ -129,15 +128,12 @@ export default defineComponent({
     const virtualHeader = JSON.parse(JSON.stringify(resumerHeader))
     const virtualPartList = JSON.parse(JSON.stringify(rePartList))
     const resetHeader = () => {
-      console.log('virtualHeader', virtualHeader)
-      console.log('header', header.value)
       store.commit('setHeader', virtualHeader)
-      console.log('header', header.value)
     }
     const resetPartList = () => {
       store.commit('setPartList', virtualPartList)
     }
-    console.log('partList', partList)
+
     // 点击确认重置数据
     const showConfirm = () => {
       ElMessageBox({
@@ -208,7 +204,6 @@ export default defineComponent({
 
     // 通过emit事件修改基本信息和联系方式
     const baseInfoInput = (e: baseInfo) => {
-      console.log('1', e)
       Object.assign(header.value.baseInfo, e)
     }
     const contactInput = (form: formItemOption) => {
@@ -222,7 +217,6 @@ export default defineComponent({
     // 点击修改主题色
 
     const changeTheme = () => {
-      console.log('change')
       store.commit('addThemeIndex')
     }
     // 点击修改主题色
@@ -236,7 +230,6 @@ export default defineComponent({
       design.value = false
     }
     const designModel = () => {
-      console.log("document.designMode === 'off'", document.designMode === 'off')
       if (document.designMode === 'off') {
         document.designMode = 'on'
         design.value = true
@@ -266,6 +259,7 @@ export default defineComponent({
     }
 
     const partInput = (part: part) => {
+      console.log('part', part)
       // 给描述添加按钮样式
       if (part.subBtnHtml !== '' && part.subBtnHtml && part.subBtnHtml.slice(0, 2) !== '<a' && part.subBtnHtml.slice(-4) !== '</a>') {
         part.subBtnHtml = `<a class="btn item-more" href="" target="_blank" title="${part.mainTitle}">${part.subBtnHtml}</a>`
@@ -285,10 +279,10 @@ export default defineComponent({
     //打开新增弹窗
     const openAddDialog = () => {
       let id: number
-      if (partList.value.length === 0) {
+      if (virtualPartList.length === 0) {
         id = 0
       } else {
-        id = partList.value[partList.value.length - 1].id + 1
+        id = virtualPartList[virtualPartList.length - 1].id + 1
       }
       // 重置
       addForm = reactive({ ...partForm })

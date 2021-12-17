@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 15:12:18
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\Header.vue
- * @LastEditTime: 2021-12-16 22:14:34
+ * @LastEditTime: 2021-12-17 18:58:02
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -76,18 +76,16 @@ export default defineComponent({
   setup(props) {
     // 切换主题
     const store = useStore(key)
-    console.log('store', store.state)
+
     const theme = computed(() => {
       return store.state.themeIndex
     })
-    console.log('themeIndex', theme.value)
 
     // console.log('props', props)
     let base: Ref = ref()
     const avaImg: Ref = ref(null)
 
     let chooseAva = (e: Event) => {
-      console.log('e', e)
       let files: FileList = (e.target as HTMLInputElement).files as FileList
       let file: File | Blob = files[0]
       // console.log('file', file)
