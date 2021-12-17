@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-17 12:08:25
+ * @LastEditTime: 2021-12-17 13:15:59
  * @LastEditors: Please set LastEditors
  */
 
@@ -113,6 +113,17 @@ export const partFormConfig: formConfigObject = reactive({
     { label: '段落描述', type: 'input', value: '', placeholder: '请输入描述', subType: 0, key: 'btnHtml' },
     { label: '段落说明', type: 'input', value: '', placeholder: '请输入说明', subType: 0, key: 'remark' },
     { label: '段落内容', type: 'textarea', value: '', placeholder: '请输入内容', subType: 0, key: 'value' },
+  ] as Array<formItemConfig>,
+})
+
+export const linkFormConfig: formConfigObject = reactive({
+  labelWidth: '70px',
+  labelPosition: 'left',
+  size: 'small',
+  formItemList: [
+    { label: '图片路径', type: 'textarea', value: '', placeholder: '请输入', subType: '', key: 'qr_img' },
+    { label: '预览路径', type: 'textarea', value: '', placeholder: '请输入', subType: '', key: 'show_href' },
+    { label: '源码路径', type: 'textarea', value: '', placeholder: '请输入', subType: '', key: 'code_href' },
   ] as Array<formItemConfig>,
 })
 

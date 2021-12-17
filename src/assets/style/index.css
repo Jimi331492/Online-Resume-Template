@@ -422,6 +422,17 @@ section.contact {
   color: #009b77;
   text-decoration: underline;
 }
+.content-bd .item-qr .item-qr-code .qr-link-no-img {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  bottom: 27px;
+  margin-right: 10px;
+}
+.content-bd .item-qr .item-qr-code .qr-link-no-img:hover {
+  color: #009b77;
+  text-decoration: underline;
+}
 #experience,
 #award {
   margin-top: 20px;
@@ -491,7 +502,10 @@ footer .footer-link .iconfont:hover {
   .file-icon {
     display: none;
   }
-  .icon-shanchu1 {
+  .icon-delete-fill {
+    display: none;
+  }
+  .icon-add-link {
     display: none;
   }
 }

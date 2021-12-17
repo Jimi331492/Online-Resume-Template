@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-16 15:46:53
+ * @LastEditTime: 2021-12-17 12:31:54
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -22,13 +22,13 @@
           <i
             @click="deletePartItem(item.itemId)"
             v-show="item.itemId == virtualItem.value"
-            class="iconfont icon-shanchu1"
+            class="iconfont icon-delete-fill"
             :title="'删除子段落' + virtualItem.value"
             style="color: gray"
           ></i>
         </el-radio>
       </template>
-      <i class="iconfont icon-roundaddfill" :title="'添加子段落' + itemConfig.subType.length" @click="addPartItem(itemConfig.subType)"></i>
+      <i class="iconfont icon-add" :title="'添加子段落' + itemConfig.subType.length" @click="addPartItem(itemConfig.subType)"></i>
     </el-radio-group>
   </el-form-item>
 </template>
@@ -85,7 +85,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
-.icon-shanchu1 {
+.icon-delete-fill {
   //绝对定位居中
   position: absolute;
   top: 50%;
@@ -93,7 +93,7 @@ export default defineComponent({
   transform: translate(-50%, -50%);
 }
 
-.icon-roundaddfill {
+.icon-add {
   //绝对定位居中
   position: absolute;
   top: 55%;
@@ -101,7 +101,7 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   font-size: 22px;
 }
-.icon-roundaddfill:hover {
+.icon-add:hover {
   cursor: pointer;
   color: #00aaff !important;
   // background-color: #00aaff;

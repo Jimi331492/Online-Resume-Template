@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-15 19:00:56
+ * @LastEditTime: 2021-12-17 14:55:33
  * @LastEditors: Please set LastEditors
  */
 export interface baseInfo {
@@ -35,6 +35,9 @@ export interface partItem {
   itemId: number
   title?: string
   remark?: string
+  qr_img?: string
+  show_href?: string
+  code_href?: string
   btnHtml?: string
   btnHref?: string
   value: string

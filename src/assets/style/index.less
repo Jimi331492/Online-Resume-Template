@@ -430,7 +430,6 @@ section.contact {
     width: 24px;
     height: 24px;
     clear: both !important;
- 
   }
 
   .item-qr {
@@ -460,6 +459,19 @@ section.contact {
         text-align: center;
         color: @main_theme;
         display: block;
+        &:hover {
+          color: #009b77;
+          text-decoration: underline;
+        }
+      }
+
+      .qr-link-no-img {
+        text-align: center;
+        // color: @main_theme;
+        display: inline-block;
+        position: relative;
+        bottom: 27px;
+        margin-right: 10px;
         &:hover {
           color: #009b77;
           text-decoration: underline;
@@ -517,8 +529,6 @@ h4.item-name {
   }
 }
 
-
-
 .works-item {
   margin-top: 5px;
 }
@@ -566,7 +576,10 @@ footer .footer-link {
     display: none;
   }
 
-  .icon-shanchu1 {
+  .icon-delete-fill {
+    display: none;
+  }
+  .icon-add-link {
     display: none;
   }
 }
