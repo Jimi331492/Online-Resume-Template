@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-17 01:24:07
+ * @LastEditTime: 2021-12-17 12:08:25
  * @LastEditors: Please set LastEditors
  */
 
@@ -42,7 +42,7 @@ export const resumerHeader: header = reactive({
       key: 'iPhone',
       value: '17367695105',
       href: 'tel:17367695105',
-      icon: 'icon-phone_circle_fill',
+      icon: 'icon-phone-fill',
     },
     {
       key: 'Email',

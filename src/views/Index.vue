@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-17 01:59:39
+ * @LastEditTime: 2021-12-17 12:06:44
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -36,11 +36,11 @@
   <div class="btn_wrap_top"></div>
   <div class="btn_wrap_left">
     <span class="pdf btn2" @click="changeTheme">
-      <i class="iconfont icon-pdf"></i>
+      <i class="iconfont icon-theme"></i>
       更改主题</span
     >
     <span class="pdf btn2" @click="changeFormat">
-      <i class="iconfont icon-pdf"></i>
+      <i class="iconfont icon-change"></i>
       改变格式</span
     >
     <a class="pdf btn2" href="resume.pdf">

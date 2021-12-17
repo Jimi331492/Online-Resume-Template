@@ -3,7 +3,7 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-17 03:11:11
+ * @LastEditTime: 2021-12-17 12:07:00
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -13,7 +13,7 @@
       <!-- 段落标题 -->
       <h2 class="section-title">
         {{ part.mainTitle }}
-        <span class="iconfont icon-shanchu1" :title="'删除' + part.mainTitle" @click="deletePart"></span>
+        <span class="iconfont icon-delete-fill" :title="'删除' + part.mainTitle" @click="deletePart"></span>
       </h2>
       <span class="section-title-r"></span>
     </header>
@@ -32,7 +32,7 @@
             <h4 class="item-name">{{ item.title }}</h4>
             <span class="item-time">{{ item.remark }}</span>
             <span v-html="item.btnHtml"></span>
-            <i class="iconfont icon-link" v-show="item.title" @click="showAddQqDialog(part.id, item.itemId)"></i>
+            <i class="iconfont icon-add-link" v-show="item.title" @click="showAddQqDialog(part.id, item.itemId)"></i>
           </header>
           <!-- 二维码 -->
           <div class="item item-qr clearfix">
