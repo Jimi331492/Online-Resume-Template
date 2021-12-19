@@ -21,6 +21,9 @@ html,
 .el-drawer .el-input {
   width: 300px;
 }
+.el-dialog .el-textarea {
+  width: 500px;
+}
 .el-dialog__title {
   color: #fff;
   width: 100%;
@@ -33,7 +36,6 @@ html,
   align-items: center;
 }
 .el-dialog .el-input__inner,
-.el-dialog .el-textarea,
 .el-dialog .el-input {
   width: 300px;
 }

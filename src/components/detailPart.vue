@@ -3,7 +3,7 @@
  * @Date: 2021-12-09 03:36:29
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\detailPart.vue
- * @LastEditTime: 2021-12-17 19:37:36
+ * @LastEditTime: 2021-12-18 19:27:22
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -30,11 +30,19 @@
         <div class="item">
           <header class="item-hd clearfix">
             <h4 class="item-name">{{ item.title }}</h4>
-            <span class="item-time">{{ item.remark }}</span>
+            <span
+              class="item-time"
+              v-show="(!item.qr_img || item.qr_img === '') && (!item.code_href || item.code_href === '') && (!item.show_href || item.show_href === '')"
+              >{{ item.remark }}</span
+            >
             <span v-html="item.btnHtml"></span>
             <!-- 添加二维码 -->
             <i
-              :class="`iconfont icon-add-link ${item.title && !(item.qr_img && item.qr_img !== '') ? '' : 'hide'}`"
+              :class="`iconfont icon-add-link ${
+                item.title && (!item.qr_img || item.qr_img === '') && (!item.code_href || item.code_href === '') && (!item.show_href || item.show_href === '')
+                  ? ''
+                  : 'hide'
+              }`"
               title="添加(二维码/链接)"
               @click="showAddQqDialog(virturlPart.id, item.itemId)"
             ></i>
@@ -48,6 +56,7 @@
                 :class="item.qr_img && item.qr_img !== '' ? 'qr-link' : 'qr-link-no-img'"
                 target="_blank"
                 :href="item.code_href"
+                :title="item.title"
                 v-if="item.code_href && item.code_href !== ''"
                 >开源链接</a
               >
@@ -55,6 +64,7 @@
                 :class="item.qr_img && item.qr_img !== '' ? 'qr-link' : 'qr-link-no-img'"
                 target="_blank"
                 :href="item.show_href"
+                :title="`点击预览${item.title}`"
                 v-if="item.show_href && item.show_href !== ''"
                 >预览链接</a
               >
@@ -91,7 +101,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, Ref } from 'vue'
-import { part, partItem } from '../common/type/index'
+import { part, partItem, inputOption } from '../common/type/index'
 import { linkFormConfig } from '../common/api/data'
 import dynamicForm from './dynamicForm/Form.vue'
 export default defineComponent({
@@ -140,7 +150,7 @@ export default defineComponent({
     //
     const linkDialogVisible = ref(false)
     const titles = ref('')
-    let addLinkForm: any = reactive({
+    let addLinkForm: inputOption = reactive({
       partId: 0,
       itemId: 0,
       qr_img: '',
@@ -161,7 +171,7 @@ export default defineComponent({
       linkDialogVisible.value = true
     }
 
-    const linkInput = (part: any) => {
+    const linkInput = (part: inputOption) => {
       console.log('part', part)
       part.itemId = addLinkForm.itemId
       part.partId = addLinkForm.partId

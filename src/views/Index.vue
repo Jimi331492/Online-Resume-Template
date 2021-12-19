@@ -3,7 +3,7 @@
  * @Date: 2021-12-07 13:40:15
  * @Description: 
  * @FilePath: \resume-ts-template\src\views\Index.vue
- * @LastEditTime: 2021-12-17 19:24:39
+ * @LastEditTime: 2021-12-18 20:11:18
  * @LastEditors: Please set LastEditors
 -->
 <template>
@@ -250,11 +250,27 @@ export default defineComponent({
     let addFormConfig: formConfigObject = reactive(partFormConfig)
     let addFormKey: Ref<number> = ref(new Date().valueOf()) //初始化key
 
+    //打开弹窗之前
+    // 除去HTML标签
+    // const strReplace = (str: string | number | undefined) => {
+    //   if (str !== '' && str) {
+    //     let Str = new String(str)
+    //     Str = Str.replaceAll(/<\/?[^>]+>/g, '')
+    //     return Str
+    //   } else {
+    //     return ''
+    //   }
+    // }
     //打开弹窗
     const openDialog = (title: string, id: number): void => {
       titles.value = title
       partId.value = id
       partFormConfig.formItemList[4].subType = reactive(partList.value[id].partItemList)
+      console.log('partFormConfig', partFormConfig)
+      // partFormConfig.formItemList[4].subType.forEach((item: any) => {
+      //   item.value = strReplace(item.value)
+      // })
+      console.log('partList', partList.value[id].partItemList)
       dialogVisible.value = true
     }
 

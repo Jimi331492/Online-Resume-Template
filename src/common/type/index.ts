@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 00:42:17
  * @Description:
  * @FilePath: \resume-ts-template\src\common\type\index.ts
- * @LastEditTime: 2021-12-17 14:55:33
+ * @LastEditTime: 2021-12-18 19:28:00
  * @LastEditors: Please set LastEditors
  */
 export interface baseInfo {

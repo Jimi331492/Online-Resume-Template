@@ -3,7 +3,7 @@
  * @Date: 2021-12-10 16:59:21
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\Form.vue
- * @LastEditTime: 2021-12-17 19:15:26
+ * @LastEditTime: 2021-12-18 19:56:51
  * @LastEditors: Please set LastEditors
 -->
 
@@ -99,17 +99,6 @@ export default defineComponent({
         console.log('error', error)
       }
     }
-
-    // 除去HTML标签
-    // const strReplace = (str: string | number | undefined) => {
-    //   if (str !== '' && str) {
-    //     let Str = new String(str)
-    //     Str = Str.replaceAll(/<\/?[^>]+>/g, '')
-    //     return Str
-    //   } else {
-    //     return ''
-    //   }
-    // }
 
     // 承上启下的作用 接收子组件change事件改变表单，向上emit change事件改变视图
     const handleInput = (option: inputOption) => {

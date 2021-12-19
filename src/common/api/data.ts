@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-17 13:15:59
+ * @LastEditTime: 2021-12-19 12:06:43
  * @LastEditors: Please set LastEditors
  */
 
@@ -137,43 +137,69 @@ export const partList: Array<part> = reactive([
       {
         parentId: 0,
         itemId: 0,
-        value: '熟悉 HTML、CSS、JS、ES6',
+        value:
+          '熟悉 <strong>HTML</strong>、<strong>CSS</strong>、<strong>JavaScript</strong>,对<em>HTML语义化</em>有一定的了解,重视<em>页面交互</em>与<em>用户体验</em>。',
         tags: {
           HTML: 'strong',
           CSS: 'strong',
           JS: 'strong',
-          ES6: 'strong',
+          JavaScript: 'strong',
         },
       },
       {
         parentId: 0,
         itemId: 1,
-        value: '熟悉 Vue、ElmentUI、Webpack，能独立搭建博客',
+        value:
+          '能熟练使用<strong>ES6</strong>语法编程，追求代码<em>高质量可维护性</em>。以<strong>Vue</strong>，<strong>Less</strong>，<strong>Webpack</strong>，<strong>微信小程序</strong>等为常用技术栈。',
         tags: {
           Vue: 'strong',
-          ElmentUI: 'strong',
+          Less: 'strong',
           Webpack: 'strong',
-          搭建博客: 'em',
+          ES6: 'strong',
+          微信小程序: 'strong',
+          高质量可维护性: 'em',
         },
       },
       {
         parentId: 0,
         itemId: 2,
-        value: '熟悉 Git、有良好的编程习惯,参与过团队开发',
+        value:
+          '熟悉<strong>Element</strong>,<strong>Bootstrap</strong>等组件库,能对该技术栈项目进行<em>页面重构</em>。了解<strong>Axios</strong>,<strong>JQuery</strong>,<strong>Echarts</strong>,<strong>loadsh</strong>等JS类库。',
         tags: {
-          Git: 'strong',
-          编程习惯: 'em',
-          团队开发: 'em',
+          Element: 'strong',
+          Bootstrap: 'strong',
+          Axios: 'strong',
+          JQuery: 'strong',
+          Echarts: 'strong',
+          loadsh: 'strong',
+          日常维护: 'em',
         },
       },
       {
         parentId: 0,
         itemId: 3,
-        value: '了解 Java、SpringBoot , 能实现简单CRUD接口',
+        value:
+          '能熟练使用<strong>Git</strong>进行<em>版本控制</em>和<em>代码托管</em>、熟悉<strong>Markdown</strong>文档编写，了解项目常规<em>开发流程</em>、开发<em>调试技巧</em>、发布<em>部署步骤</em>。',
         tags: {
-          Java: 'strong',
+          Git: 'strong',
+          Markdown: 'strong',
+          版本控制: 'em',
+          代码托管: 'em',
+          开发流程: 'em',
+          调试技巧: 'em',
+          部署步骤: 'em',
+        },
+      },
+      {
+        parentId: 0,
+        itemId: 4,
+        value: '了解SpringBoot，能简单实现接口，并利用Swagger或Postman进行接口测试。',
+        tags: {
           SpringBoot: 'strong',
-          CRUD接口: 'em',
+          Swagger: 'strong',
+          Postman: 'strong',
+          实现接口: 'em',
+          接口测试: 'em',
         },
       },
     ] as Array<partItem>,
@@ -192,24 +218,167 @@ export const partList: Array<part> = reactive([
         itemId: 0,
         title: '智牧兴农·管理平台',
         remark: '',
-        btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">Vue</a>',
-        value: '主要利用Vue2.x,和Element组件库搭建',
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">Vue全家桶</a> ',
+        value:
+          '该项目组件库采用Element，整体采用24栅格+Flex布局，在项目中主要负责相关功能模块的开发，在开发过程中，遵循模块化开发，参与制定团队组件规范，保证代码的高复用性与可读性，项目使用Git进行版本控制和代码托管。',
         tags: {
-          'Vue2.x': 'strong',
           Element: 'strong',
+          Git: 'strong',
+          '24栅格+Flex': 'em',
+          模块化开发: 'em',
+          组件规范: 'em',
+          高复用性: 'em',
+          可读性: 'em',
+          版本控制: 'em',
+          代码托管: 'em',
         },
       },
       {
         parentId: 1,
         itemId: 1,
-        title: '智牧兴农·小程序',
+        title: '智牧兴农·微信小程序',
+        remark: '',
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">MINA</a> ',
+        value:
+          '项目整体采用Flex弹性布局，主要负责快速构建高质量页面，在拥有不错的ES6及其它基础下，3天熟悉小程序的基础语法，开发流程，能调用相关微信接口独立实现业务需求。由于项目中有大量的表单数据，各UI库又没有合适的组件,基于组件化的思想，自己二次封装了Table组件,解决了项目中大量数据的展示问题。',
+        tags: {
+          Flex: 'strong',
+          ES6: 'strong',
+          组件化: 'em',
+          二次封装: 'em',
+        },
+      },
+    ] as Array<partItem>,
+  },
+  {
+    // 设置实习经历
+    id: 2,
+    childId: 0,
+    mainTitle: '相关能力',
+    subTitle: '',
+    subRemark: '',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 2,
+        itemId: 0,
+        title: '英语四级',
         remark: '',
         btnHtml: '',
-        value: '负责智牧兴农 小程序 开发，前端基于服务端渲染技术Velocity 模板，学有余力把后端Spring框架学了',
+        value: '较好的英文阅读能力，能通过科学上网的方式了解国内外相关技术的发展。',
+        tags: {},
+      },
+      {
+        parentId: 2,
+        itemId: 1,
+        title: '普通话二级-乙等',
+        remark: '',
+        btnHtml: '',
+        value: '乐于和同样热爱的人交流技术，探索技术能在实际生活的应用，实现技术解放生产力。',
         tags: {
-          学有余力: 'em',
-          Spring: 'strong',
+          交流技术: 'em',
+          解放生产力: 'em',
         },
+      },
+    ] as Array<partItem>,
+  },
+  {
+    // 设置项目经历
+    id: 3,
+    childId: 0,
+    mainTitle: '开源项目',
+    subTitle: '',
+    subRemark: '',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 3,
+        itemId: 0,
+        title: 'Mj|Admin Template',
+        remark: '',
+        btnHtml: '',
+        value: '一个基于Vue3+ElementPlus的后台管理模板，实现了前端的动态菜单，路由控制，按钮级别的权限控制。',
+        tags: {},
+      },
+      {
+        parentId: 3,
+        itemId: 1,
+        title: '在线简历模板',
+        // show_href: 'mmgoodstudy.icu/demoWall',
+        remark: '2021-11 ~ 2021-12',
+        btnHtml: '',
+        value: '基于Vue3+TS实现的一个简历模板',
+        tags: {},
+      },
+    ] as Array<partItem>,
+  },
+  {
+    // 设置项目经历
+    id: 4,
+    childId: 0,
+    mainTitle: '项目作品',
+    subTitle: '',
+    subRemark: '',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 4,
+        itemId: 0,
+        title: '电商后台管理系统',
+        // show_href: 'mmgoodstudy.icu/demoWall',
+        remark: '2021-07 ~ 2021-08',
+        btnHtml: '',
+        value:
+          '基于Vue3+ElementPlus+Node.js开发的电商后台管理系统，采用了前后端分离的开发模式，实现了登录退出功能，和对用户，商品，权限，订单，数据的管理以及前端页面布局。',
+        tags: {},
+      },
+      {
+        parentId: 4,
+        itemId: 1,
+        title: '网上鲜花销售系统',
+        remark: '',
+        btnHtml: '',
+        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
+        tags: {},
+      },
+      {
+        parentId: 4,
+        itemId: 1,
+        title: '',
+        remark: '',
+        btnHtml: '',
+        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
+        tags: {},
+      },
+      {
+        parentId: 4,
+        itemId: 1,
+        title: '',
+        remark: '',
+        btnHtml: '',
+        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
+        tags: {},
+      },
+    ] as Array<partItem>,
+  },
+  {
+    // 设置项目经历
+    id: 5,
+    childId: 0,
+    mainTitle: '自我评价',
+    subTitle: '',
+    subRemark: '',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 5,
+        itemId: 0,
+        title: '',
+        remark: '',
+        btnHtml: '',
+        value:
+          '本人热爱互联网，热爱编程，已积累一定数量中小型前端项目开发经验，能够落实完成工作任务，WEB后端方向熟悉Java语言，了解Spring Boot，和Node.js，能自己开发一些小型全栈项目， 乐于了解新技术，购买过云服务器，有在Cent.OS服务器进行远程部署项目的经历，独立搭建博客用于学习，交流技术。',
+        tags: {},
       },
     ] as Array<partItem>,
   },

@@ -3,14 +3,21 @@
  * @Date: 2021-12-10 17:30:00
  * @Description: 
  * @FilePath: \resume-ts-template\src\components\dynamicForm\formItem.vue
- * @LastEditTime: 2021-12-17 12:31:54
+ * @LastEditTime: 2021-12-18 20:27:00
  * @LastEditors: Please set LastEditors
 -->
 <template>
   <el-form-item :label="itemConfig.label" :prop="itemConfig.key">
     <!-- 输入框 -->
     <el-input v-if="itemConfig.type === 'input'" :placeholder="itemConfig.placeholder" v-model="virtualItem.value" @input="handleInput" />
-    <el-input v-if="itemConfig.type === 'textarea'" type="textarea" :placeholder="itemConfig.placeholder" v-model="virtualItem.value" @input="handleInput" />
+    <el-input
+      v-if="itemConfig.type === 'textarea'"
+      :rows="4"
+      type="textarea"
+      :placeholder="itemConfig.placeholder"
+      v-model="virtualItem.value"
+      @input="handleInput"
+    />
     <!-- 选择下拉框 -->
     <el-select v-if="itemConfig.type === 'select'" v-model="virtualItem.value" :placeholder="itemConfig.placeholder" @change="handleSelect">
       <el-option v-for="item in itemConfig.subType" :key="item.label" :label="item.label" :value="item.value"> </el-option>
@@ -97,7 +104,7 @@ export default defineComponent({
   //绝对定位居中
   position: absolute;
   top: 55%;
-  left: 105%;
+  left: 65%;
   transform: translate(-50%, -50%);
   font-size: 22px;
 }
