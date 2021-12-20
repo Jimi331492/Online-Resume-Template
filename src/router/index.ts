@@ -3,10 +3,10 @@
  * @Date: 2021-12-06 18:19:32
  * @Description:
  * @FilePath: \resume-ts-template\src\router\index.ts
- * @LastEditTime: 2021-12-20 16:47:03
+ * @LastEditTime: 2021-12-20 17:02:24
  * @LastEditors: Please set LastEditors
  */
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const Index = () => import(/* webpackChunkName: "public" */ '../views/Index.vue')
 
 const routes: Array<RouteRecordRaw> = [
@@ -15,7 +15,8 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(),
   routes,
 })
 
