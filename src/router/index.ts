@@ -3,7 +3,7 @@
  * @Date: 2021-12-06 18:19:32
  * @Description:
  * @FilePath: \resume-ts-template\src\router\index.ts
- * @LastEditTime: 2021-12-07 15:28:15
+ * @LastEditTime: 2021-12-20 16:47:03
  * @LastEditors: Please set LastEditors
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'

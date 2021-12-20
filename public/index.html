@@ -3,27 +3,33 @@
  * @Date: 2021-12-06 18:19:32
  * @Description: 
  * @FilePath: \resume-ts-template\public\index.html
- * @LastEditTime: 2021-12-06 18:25:18
+ * @LastEditTime: 2021-12-20 14:43:03
  * @LastEditors: Please set LastEditors
 -->
 
 <!DOCTYPE html>
-
 <html lang="">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title>简历模板</title>
+    <title><%= htmlWebpackPlugin.options.isProd? '':'dev - '%>在线简历模板</title>
+    <% if(htmlWebpackPlugin.options.isProd) { %>
+    <!-- css 文件 -->
+
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.css) { %>
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.cdn.css[i] %>" />
+    <% } %>
+
+    <!-- js 文件 -->
+    <% for (var i in htmlWebpackPlugin.options.cdn && htmlWebpackPlugin.options.cdn.js) { %>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.options.cdn.js[i] %>"></script>
+    <% } }%>
   </head>
   <body>
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->

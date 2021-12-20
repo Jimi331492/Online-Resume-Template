@@ -3,11 +3,13 @@
  * @Date: 2021-12-06 18:19:32
  * @Description: 
  * @FilePath: \resume-ts-template\src\App.vue
- * @LastEditTime: 2021-12-16 04:08:05
+ * @LastEditTime: 2021-12-20 02:42:04
  * @LastEditors: Please set LastEditors
 -->
 <template>
-  <router-view />
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
