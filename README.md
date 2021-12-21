@@ -3,7 +3,7 @@
  * @Date: 2021-12-06 18:20:02
  * @Description:
  * @FilePath: \resume-ts-template\README.md
- * @LastEditTime: 2021-12-21 15:19:53
+ * @LastEditTime: 2021-12-21 15:24:38
  * @LastEditors: Please set LastEditors
 -->
 
@@ -11,11 +11,11 @@
 
 ## 项目预览
 
-#### [点击预览](https://www.mmgoodstudy.icu/myResume)
+#### 在线简历模板 [点击预览](https://www.my3iao.com/myResume)
 
 ## 简介
 
-转眼就大四了，啥也不会，秋招一个 offer 也没拿到，这不想着春招更新一下简历，上一版简历是一个用 Html+css 的纯静态网页，这次就想搞高级一点，想写个能有交互的，真好找模板找到了一个中意的[点击查看](https://wu-sili.gitee.io/resume/) 就想搞一个小 Demo, 本项目是一个纯前端项目，没有进行后端交互
+转眼就大四了，啥也不会，秋招一个 offer 也没拿到，这不想着春招更新一下简历，上一版简历是一个用 Html+css 的纯静态网页，这次就想搞高级一点，想写个能有交互的，正好找模板找到了一个中意的 [吴思里的简历](https://wu-sili.gitee.io/resume/) 就想搞一个小 Demo, 本项目是一个纯前端项目，没有进行后端交互
 
 ## 所使用的技术
 
@@ -36,7 +36,7 @@ src 下的
 
 - assets 静态文件 放了一些 img 和 style 样式文件
 - common 写死的默认数据，和定义的 Interface 类型接口
-- components 布局组件 Header(就是简历的头部) 和 Part(就是简历下面一段一段的) 和表单组件，这里写了一个动态表单，根据传定义的表单配置，自动生成表单
+- components 布局组件 Header(就是简历的头部) 和 Part(就是简历下面一段一段的) 和表单组件，这里写了一个动态表单，根据定义的表单配置，自动生成表单
 - router 基本没用到 不要用 history 模式 静态部署到 Github Page 会失败
 - stroe Vuex 数据持久化
 - views 首页页面
