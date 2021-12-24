@@ -433,10 +433,6 @@ section.contact {
   color: #009b77;
   text-decoration: underline;
 }
-#experience,
-#award {
-  margin-top: 20px;
-}
 .item-more {
   position: relative;
   top: 6px;
@@ -445,9 +441,6 @@ section.contact {
 }
 .item-time {
   position: relative;
-}
-#award .item-more {
-  float: right;
 }
 h3.item-name {
   font-size: 16px;
@@ -507,6 +500,9 @@ footer .footer-link .iconfont:hover {
   }
   .icon-add-link {
     display: none;
+  }
+  .iconfont {
+    align-self: flex-start;
   }
 }
 @media screen and (max-width: 1960px) {

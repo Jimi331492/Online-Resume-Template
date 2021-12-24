@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-19 12:06:43
+ * @LastEditTime: 2021-12-25 01:04:15
  * @LastEditors: Please set LastEditors
  */
 
@@ -240,12 +240,14 @@ export const partList: Array<part> = reactive([
         remark: '',
         btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">MINA</a> ',
         value:
-          '项目整体采用Flex弹性布局，主要负责快速构建高质量页面，在拥有不错的ES6及其它基础下，3天熟悉小程序的基础语法，开发流程，能调用相关微信接口独立实现业务需求。由于项目中有大量的表单数据，各UI库又没有合适的组件,基于组件化的思想，自己二次封装了Table组件,解决了项目中大量数据的展示问题。',
+          '项目整体采用Flex弹性布局，主要负责快速构建高质量页面，在拥有不错的ES6及其它基础下，3天熟悉小程序的基础语法，开发流程，能调用相关微信接口独立实现业务需求。由于项目中有大量的表单数据，各UI库又没有合适的组件,基于组件化的思想，自己封装了Table组件,解决了项目中大量数据的展示问题。',
         tags: {
           Flex: 'strong',
           ES6: 'strong',
+          '3天熟悉': 'em',
+          独立实现: 'em',
           组件化: 'em',
-          二次封装: 'em',
+          封装: 'em',
         },
       },
     ] as Array<partItem>,
@@ -262,24 +264,45 @@ export const partList: Array<part> = reactive([
       {
         parentId: 2,
         itemId: 0,
-        title: '英语四级',
+        title: '乐于分享',
         remark: '',
         btnHtml: '',
-        value: '较好的英文阅读能力，能通过科学上网的方式了解国内外相关技术的发展。',
-        tags: {},
+        value: '在 个人独立博客、LeetCode 社区多次分享技术文章和参与技术讨论，在公司实习过程中多次组织技术交流',
+        tags: {
+          个人独立博客: 'strong',
+          LeetCode: 'strong',
+        },
       },
       {
         parentId: 2,
         itemId: 1,
-        title: '普通话二级-乙等',
+        title: '开源项目、产品设计经验',
         remark: '',
         btnHtml: '',
-        value: '乐于和同样热爱的人交流技术，探索技术能在实际生活的应用，实现技术解放生产力。',
+        value:
+          '有相关开源项目经验，从原型设计到前后端产品落地：「通用权限管理系统」' +
+          '和「在线简历模板」，前者主要提高相关to B 产品前后端开发速度，后者主要提供给大家一个丰富样式，精美布局的一个简历模板，' +
+          '在当前千篇一律的简历样式中凸显自我。',
         tags: {
-          交流技术: 'em',
-          解放生产力: 'em',
+          原型设计: 'em',
+          产品落地: 'em',
+          丰富样式: 'em',
+          精美布局: 'em',
+          凸显自我: 'em',
         },
       },
+
+      // {
+      //   parentId: 2,
+      //   itemId: 1,
+      //   title: '持续保持知识积累，对新技术好奇',
+      //   remark: '',
+      //   btnHtml: '',
+      //   value: '每周于语雀知识库中编写技术总结，对 CSS Houdini、Serverless、PWA 等新技术持续保持好奇心',
+      //   tags: {
+      //     语雀知识库: 'strong',
+      //   },
+      // },
     ] as Array<partItem>,
   },
   {
@@ -294,21 +317,60 @@ export const partList: Array<part> = reactive([
       {
         parentId: 3,
         itemId: 0,
-        title: 'Mj|Admin Template',
+        title: '通用权限管理模板',
+        code_href: 'https://www.my3iao.com/Mj-Admin-Tamplate/',
         remark: '',
-        btnHtml: '',
-        value: '一个基于Vue3+ElementPlus的后台管理模板，实现了前端的动态菜单，路由控制，按钮级别的权限控制。',
-        tags: {},
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="开源项目">Vue全家桶</a> ',
+        value:
+          '是一个基于 <strong>Vue3</strong> 和 <strong>SpringBoot</strong> 开发的全栈前后端分离的基础权限管理模板，' +
+          '通过集成<em>shiro+jwt鉴权</em>，<em>动态路由</em>，<em>动态菜单</em>，<em>按钮权限</em>等功能，提供多种示例，将更多时间专注在业务开发上。',
+        tags: {
+          Vue3: 'strong',
+          SpringBoot: 'strong',
+          'shiro+jwt鉴权': 'em',
+          动态路由: 'em',
+          按钮权限: 'em',
+          动态菜单: 'em',
+        },
       },
       {
         parentId: 3,
         itemId: 1,
-        title: '在线简历模板',
-        // show_href: 'mmgoodstudy.icu/demoWall',
-        remark: '2021-11 ~ 2021-12',
+        title: '',
+        remark: '',
         btnHtml: '',
-        value: '基于Vue3+TS实现的一个简历模板',
-        tags: {},
+        value:
+          '在项目开发过程，主要难点在于通过addRoute动态生成路由,自定义Vue指令实现按钮级别的权限控制。' +
+          '其他亮点有：使用WebSocket展示实时在线人数，并通过Echarts进行数据可视化。在开发过程中通过Swagger接口文档进行联合调试。',
+        tags: {
+          addRoute: 'strong',
+          Echarts: 'strong',
+          WebSocket: 'strong',
+          数据可视化: 'em',
+          自定义Vue指令: 'em',
+          Swagger: 'strong',
+          联合调试: 'em',
+        },
+      },
+      {
+        parentId: 3,
+        itemId: 2,
+        title: '在线简历模板',
+        qr_img: 'https://cdn.jsdelivr.net/gh/Jimi331492/cdn/img/project/onlineResum.png',
+        code_href: 'https://github.com/Jimi331492/Online-Resume-Template/',
+        show_href: 'https://www.my3iao.com/Online-Resume-Template/',
+        remark: '2021-11 ~ 2021-12',
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="开源项目">Typescript</a> ',
+        value:
+          '使用了Vue3+Typescript,并采用了Composition API写法，,运用 Less 提高样式编写效率,' +
+          '主要实现了一个在线的可编辑的简历模板，运用CSS变量实现改变背景颜色，采用媒体查询实现打印格式，适配不同屏幕大小，达到响应式效果。',
+        tags: {
+          'Composition API': 'strong',
+          'Vue3+Typescript': 'strong',
+          Less: 'strong',
+          媒体查询: 'em',
+          响应式效果: 'em',
+        },
       },
     ] as Array<partItem>,
   },
@@ -327,37 +389,47 @@ export const partList: Array<part> = reactive([
         title: '电商后台管理系统',
         // show_href: 'mmgoodstudy.icu/demoWall',
         remark: '2021-07 ~ 2021-08',
-        btnHtml: '',
+        btnHtml: '<a class="btn item-more" href="https://www.my3iao.com/e_manageSystem_Preview/#/login" target="_blank" title="电商后台管理系统">点击预览</a> ',
         value:
-          '基于Vue3+ElementPlus+Node.js开发的电商后台管理系统，采用了前后端分离的开发模式，实现了登录退出功能，和对用户，商品，权限，订单，数据的管理以及前端页面布局。',
-        tags: {},
+          '基于<strong>Vue3+ElementPlus</strong>开发，根据<em>开发文档</em>，实现了用户登录以及用户，权限，商品，订单数据等模块。' +
+          '在开发过程中，对<strong>Element</strong>中<strong>Table</strong>，<strong>Form</strong>等组件以及其他公共组件进行封装，<em>提高代码的复用率</em>。',
+
+        tags: {
+          'Vue3+ElementPlus': 'strong',
+          Element: 'strong',
+          Table: 'strong',
+          Form: 'strong',
+          提高代码的复用率: 'em',
+          开发文档: 'em',
+        },
       },
       {
         parentId: 4,
         itemId: 1,
         title: '网上鲜花销售系统',
-        remark: '',
-        btnHtml: '',
-        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
-        tags: {},
-      },
-      {
-        parentId: 4,
-        itemId: 1,
-        title: '',
-        remark: '',
-        btnHtml: '',
-        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
-        tags: {},
-      },
-      {
-        parentId: 4,
-        itemId: 1,
-        title: '',
-        remark: '',
-        btnHtml: '',
-        value: '前端：HTML/CSS, jQuery，bootstrap。后端：基于SSM框架+数据库MySQL开发。该项目为小组开发。',
-        tags: {},
+        remark: '2021-05 ~ 2021-06',
+        btnHtml: '<a class="btn item-more" href="" target="_blank" title="项目作品">SSM</a>',
+        value:
+          '项目组长，负责小组人员工作分配、项目架构，指定团队协作流程、组织技术交流。' +
+          '编写了完整的可行性分析文档、需求规格说明书、开发文档、测试文档、用户使用文档。' +
+          '负责前端页面编写和功能交互，实现鲜花上架、收发货管理、物流管理等核心功能',
+        tags: {
+          项目组长: 'em',
+          工作分配: 'em',
+          项目架构: 'em',
+          指定团队协作: 'em',
+          组织技术交流: 'em',
+          可行性分析文档: 'em',
+          需求规格说明书: 'em',
+          开发文档: 'em',
+          测试文档: 'em',
+          用户使用文档: 'em',
+          页面编写: 'em',
+          功能交互: 'em',
+          鲜花上架: 'em',
+          收发货管理: 'em',
+          物流管理: 'em',
+        },
       },
     ] as Array<partItem>,
   },
@@ -377,8 +449,17 @@ export const partList: Array<part> = reactive([
         remark: '',
         btnHtml: '',
         value:
-          '本人热爱互联网，热爱编程，已积累一定数量中小型前端项目开发经验，能够落实完成工作任务，WEB后端方向熟悉Java语言，了解Spring Boot，和Node.js，能自己开发一些小型全栈项目， 乐于了解新技术，购买过云服务器，有在Cent.OS服务器进行远程部署项目的经历，独立搭建博客用于学习，交流技术。',
-        tags: {},
+          '本人热爱互联网，热爱编程，已积累一定数量中小型前端项目开发经验，能够落实完成工作任务，WEB后端方向熟悉Java语言，了解SpringBoot和Nodejs，能自己开发一些小型全栈项目，能持续保持知识积累，对新技术好奇。',
+        // '购买过云服务器，有在Cent.OS服务器进行远程部署项目的经历，独立搭建博客用于学习，交流技术。',
+        tags: {
+          热爱互联网: 'em',
+          热爱编程: 'em',
+          Java: 'strong',
+          SpringBoot: 'strong',
+          Nodejs: 'strong',
+          小型全栈项目: 'em',
+          保持知识积累: 'em',
+        },
       },
     ] as Array<partItem>,
   },

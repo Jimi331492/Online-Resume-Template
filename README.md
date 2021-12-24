@@ -3,16 +3,17 @@
  * @Date: 2021-12-06 18:20:02
  * @Description:
  * @FilePath: \resume-ts-template\README.md
- * @LastEditTime: 2021-12-21 15:24:38
+ * @LastEditTime: 2021-12-21 18:07:47
  * @LastEditors: Please set LastEditors
 -->
+
 
 # 妙妙 Tools 在线简历模板
 
 ## 项目预览
 
-#### 在线简历模板 [点击预览](https://www.my3iao.com/myResume)
-
+#### 在线简历模板 [点击预览](https://www.my3iao.com/Online-Resume-Template/)
+  
 ## 简介
 
 转眼就大四了，啥也不会，秋招一个 offer 也没拿到，这不想着春招更新一下简历，上一版简历是一个用 Html+css 的纯静态网页，这次就想搞高级一点，想写个能有交互的，正好找模板找到了一个中意的 [吴思里的简历](https://wu-sili.gitee.io/resume/) 就想搞一个小 Demo, 本项目是一个纯前端项目，没有进行后端交互
