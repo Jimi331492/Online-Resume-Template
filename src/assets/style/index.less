@@ -553,6 +553,17 @@ footer .footer-link {
     margin: 0;
     background-color: #eee;
   }
+  //打印时隐藏功能按钮
+  .github-footer,
+  .btn_wrap_left,
+  .btn_wrap_right,
+  .btnArea {
+    display: none;
+  }
+  .content {
+    width: 100vw;
+    aspect-ratio: 210/297;
+  }
 
   .file-icon {
     display: none;
@@ -567,7 +578,6 @@ footer .footer-link {
   .iconfont {
     align-self: flex-start;
   }
-
 }
 
 @media screen and (max-width: 1960px) {
@@ -585,9 +595,13 @@ footer .footer-link {
       align-self: flex-start;
     }
   }
+
+
 }
 
 @media all and (max-width: 1260px) {
+ 
+
   .btn_wrap_right {
     left: auto;
     right: 8px;

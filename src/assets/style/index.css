@@ -491,6 +491,16 @@ footer .footer-link .iconfont:hover {
     margin: 0;
     background-color: #eee;
   }
+  .github-footer,
+  .btn_wrap_left,
+  .btn_wrap_right,
+  .btnArea {
+    display: none;
+  }
+  .content {
+    width: 100vw;
+    aspect-ratio: 210/297;
+  }
   .file-icon {
     display: none;
   }

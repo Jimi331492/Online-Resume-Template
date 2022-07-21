@@ -3,7 +3,7 @@
  * @Date: 2021-12-11 13:43:51
  * @Description:
  * @FilePath: \resume-ts-template\src\common\api\data.ts
- * @LastEditTime: 2021-12-25 01:04:15
+ * @LastEditTime: 2022-07-22 01:51:35
  * @LastEditors: Please set LastEditors
  */
 
@@ -23,7 +23,7 @@ export const resumerHeader: header = reactive({
     school_url:
       'https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=88093251_34_hao_pg&wd=%E6%B2%B3%E5%8C%97%E5%9C%B0%E8%B4%A8%E5%A4%A7%E5%AD%A6&fenlei=256&rsv_pq=9f2df52d0001d879&rsv_t=d20aQxyaphcN4AyImYK5czXEHER%2FUKl0tNdvtH1oKcy0SDscKJMm8OF2PWc3Cvgq94TcVOvRY9d7&rqlang=cn&rsv_enter=1&rsv_dl=ib&rsv_sug3=22&rsv_sug1=15&rsv_sug7=100',
     subject: '软件工程', //专业
-    job: 'Web前端开发工程师', //应聘职位
+    job: '前端开发工程师', //应聘职位
   },
   contact: [
     {
@@ -46,8 +46,8 @@ export const resumerHeader: header = reactive({
     },
     {
       key: 'Email',
-      value: '1592043271@qq.com',
-      href: 'mailto:1592043271@qq.com',
+      value: 'jimi331492@gmail.com',
+      href: 'mailto:jimi331492@gmail.com',
       icon: 'icon-email',
     },
   ],
@@ -137,12 +137,13 @@ export const partList: Array<part> = reactive([
       {
         parentId: 0,
         itemId: 0,
-        value:
-          '熟悉 <strong>HTML</strong>、<strong>CSS</strong>、<strong>JavaScript</strong>,对<em>HTML语义化</em>有一定的了解,重视<em>页面交互</em>与<em>用户体验</em>。',
+        value: '具有PC端、移动端、前后端分离及小程序等相关项目的开发经验，后台管理设计方案。能熟练使用HTML、CSS、JavaScript构建高性能的前端应用程序。',
         tags: {
           HTML: 'strong',
           CSS: 'strong',
-          JS: 'strong',
+          PC端: 'strong',
+          移动端: 'strong',
+          前后端分离及小程序: 'strong',
           JavaScript: 'strong',
         },
       },
@@ -150,10 +151,9 @@ export const partList: Array<part> = reactive([
         parentId: 0,
         itemId: 1,
         value:
-          '能熟练使用<strong>ES6</strong>语法编程，追求代码<em>高质量可维护性</em>。以<strong>Vue</strong>，<strong>Less</strong>，<strong>Webpack</strong>，<strong>微信小程序</strong>等为常用技术栈。',
+          '熟悉<strong>JavaScript</strong>，能熟练使用<strong>ES6</strong>语法，保证代码的<em>高质量可维护性</em>。能熟练使用<strong>Less</strong>提高CSS编写效率，并保证CSS的可维护性。以<strong>Vue</strong>，<strong>Webpack</strong>，<strong>微信小程序</strong>为常用前端技术栈。',
         tags: {
           Vue: 'strong',
-          Less: 'strong',
           Webpack: 'strong',
           ES6: 'strong',
           微信小程序: 'strong',
@@ -164,91 +164,101 @@ export const partList: Array<part> = reactive([
         parentId: 0,
         itemId: 2,
         value:
-          '熟悉<strong>Element</strong>,<strong>Bootstrap</strong>等组件库,能对该技术栈项目进行<em>页面重构</em>。了解<strong>Axios</strong>,<strong>JQuery</strong>,<strong>Echarts</strong>,<strong>loadsh</strong>等JS类库。',
+          '熟悉<strong>Element</strong>,<strong>Antd</strong>,<strong>Bootstrap</strong>等常用前端UI框架,能对该技术栈项目进行<em>页面重构</em>。熟练掌握<strong>Flex，Grid</strong>等布局方式，了解<em>响应式布局原理</em>，了解<strong>Axios</strong>,<strong>Echarts</strong>,<strong>loadsh</strong>等JS类库。',
         tags: {
           Element: 'strong',
+          Antd: 'strong',
           Bootstrap: 'strong',
           Axios: 'strong',
-          JQuery: 'strong',
           Echarts: 'strong',
           loadsh: 'strong',
-          日常维护: 'em',
         },
       },
       {
         parentId: 0,
         itemId: 3,
         value:
-          '能熟练使用<strong>Git</strong>进行<em>版本控制</em>和<em>代码托管</em>、熟悉<strong>Markdown</strong>文档编写，了解项目常规<em>开发流程</em>、开发<em>调试技巧</em>、发布<em>部署步骤</em>。',
+          '能熟练使用<strong>Git</strong>进行版本控制、<strong>Fiddler</strong>抓包，掌握<strong>Linux Shell</strong>基本命令,熟悉<strong>Markdown</strong>文档编写，掌握<strong>Vue,SpringBoot以及小程序</strong>等前后端分离项目的<em>开发流程</em>、<em>调试技巧</em>、<em>部署步骤</em>。',
         tags: {
           Git: 'strong',
+          Fiddler: 'strong',
+          'Linux Shell': 'strong',
           Markdown: 'strong',
-          版本控制: 'em',
-          代码托管: 'em',
           开发流程: 'em',
           调试技巧: 'em',
           部署步骤: 'em',
         },
       },
-      {
-        parentId: 0,
-        itemId: 4,
-        value: '了解SpringBoot，能简单实现接口，并利用Swagger或Postman进行接口测试。',
-        tags: {
-          SpringBoot: 'strong',
-          Swagger: 'strong',
-          Postman: 'strong',
-          实现接口: 'em',
-          接口测试: 'em',
-        },
-      },
+      // {
+      //   parentId: 0,
+      //   itemId: 4,
+      //   value: '',
+      //   tags: {},
+      // },
     ] as Array<partItem>,
   },
   {
     // 设置实习经历
     id: 1,
     childId: 0,
-    mainTitle: '实习经历',
-    subTitle: '中兴通软(北京)科技有限公司',
-    subRemark: '2021.09~至今',
+    mainTitle: '工作经历',
+    subTitle: '中兴通软(北京)软件有限责任公司',
+    subRemark: '2021.09~2022.07',
     subBtnHtml: '',
     partItemList: [
       {
         parentId: 1,
         itemId: 0,
-        title: '智牧兴农·管理平台',
+        title: '智牧兴农',
+        qr_img: 'https://cdn.jsdelivr.net/gh/Jimi331492/cdn/img/project/cownetwork.jpg',
         remark: '',
-        btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">Vue全家桶</a> ',
-        value:
-          '该项目组件库采用Element，整体采用24栅格+Flex布局，在项目中主要负责相关功能模块的开发，在开发过程中，遵循模块化开发，参与制定团队组件规范，保证代码的高复用性与可读性，项目使用Git进行版本控制和代码托管。',
-        tags: {
-          Element: 'strong',
-          Git: 'strong',
-          '24栅格+Flex': 'em',
-          模块化开发: 'em',
-          组件规范: 'em',
-          高复用性: 'em',
-          可读性: 'em',
-          版本控制: 'em',
-          代码托管: 'em',
-        },
+        btnHtml: '<a class="btn item-more" href="http://cow.zxtrj.com/logins" target="_blank" title="企业实习">后台管理+微信小程序</a> ',
+        value: '项目描述：智牧兴农是一个<em>智慧牧场管理平台</em>，主要功能为实现对牲畜的活动、饲喂、生产情况进行监测，记录历史成长情况等。',
+        tags: {},
       },
+      // {
+      //   parentId: 1,
+      //   itemId: 1,
+      //   title: '智牧兴农·微信小程序',
+      //   remark: '',
+      //   btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">MINA</a> ',
+      //   value: '完成项目从零搭建到顺利上线并使用，及时处理客户提出的功能需求和问题。',
+      //   tags: {
+      //     Flex: 'strong',
+      //     ES6: 'strong',
+      //     '3天熟悉': 'em',
+      //     独立实现: 'em',
+      //     组件化: 'em',
+      //     封装: 'em',
+      //   },
+      // },
       {
         parentId: 1,
         itemId: 1,
-        title: '智牧兴农·微信小程序',
+        title: '',
+        remark: '',
+        btnHtml: ' ',
+        value:
+          '项目职责：从零搭建<em>智牧兴农·小程序</em>到顺利发布上线并使用，包括接入<strong>微信支付</strong>，<strong>蓝牙通讯模块</strong>，基于Echarts绘制产量图表和谱系关系图等可视化模块，以及实现<em>基本业务功能</em>。开发维护Vue后台管理项目，解决提出的功能需求和问题。',
+        tags: {},
+      },
+      {
+        parentId: 1,
+        itemId: 2,
+        title: '保险理赔小程序',
         remark: '',
         btnHtml: '<a class="btn item-more" href="" target="_blank" title="企业实习">MINA</a> ',
-        value:
-          '项目整体采用Flex弹性布局，主要负责快速构建高质量页面，在拥有不错的ES6及其它基础下，3天熟悉小程序的基础语法，开发流程，能调用相关微信接口独立实现业务需求。由于项目中有大量的表单数据，各UI库又没有合适的组件,基于组件化的思想，自己封装了Table组件,解决了项目中大量数据的展示问题。',
-        tags: {
-          Flex: 'strong',
-          ES6: 'strong',
-          '3天熟悉': 'em',
-          独立实现: 'em',
-          组件化: 'em',
-          封装: 'em',
-        },
+        value: '项目描述：主要为智牧兴农的牲畜和牧场进行<em>投保理赔</em>，可以实时拍照录像上传至 <strong>OSS识别</strong> 服务器实现定损、理赔的系统。',
+        tags: {},
+      },
+      {
+        parentId: 1,
+        itemId: 3,
+        title: '',
+        remark: '',
+        btnHtml: ' ',
+        value: '项目职责：主要负责<em>登录认证</em>，身份信息和银行卡的<strong>OCR识别</strong>。投保/支付/历史订单查询以及联系客服、展示资讯、回复评论等功能',
+        tags: {},
       },
     ] as Array<partItem>,
   },
@@ -309,7 +319,7 @@ export const partList: Array<part> = reactive([
     // 设置项目经历
     id: 3,
     childId: 0,
-    mainTitle: '开源项目',
+    mainTitle: '项目作品',
     subTitle: '',
     subRemark: '',
     subBtnHtml: '',
@@ -317,12 +327,60 @@ export const partList: Array<part> = reactive([
       {
         parentId: 3,
         itemId: 0,
-        title: '通用权限管理模板',
-        code_href: 'https://www.my3iao.com/Mj-Admin-Tamplate/',
-        remark: '',
-        btnHtml: '<a class="btn item-more" href="" target="_blank" title="开源项目">Vue全家桶</a> ',
+        title: 'WeHgu校园社区',
+        qr_img: 'https://cdn.jsdelivr.net/gh/Jimi331492/cdn/img/project/wehgu.png',
+        code_href: 'https://github.com/Jimi331492/wehgu/',
+        remark: '2021-07 ~ 2021-08',
+        btnHtml: '<a class="btn item-more" href="https://www.my3iao.com/wehgu-vue-admin/#/login" target="_blank" title="WeHgu校园墙后台管理系统">点击预览</a> ',
         value:
-          '是一个基于 <strong>Vue3</strong> 和 <strong>SpringBoot</strong> 开发的全栈前后端分离的基础权限管理模板，' +
+          '该项目为<em>小型全栈项目</em>，分为微信小程序，Vue后台管理以及SpringBoot后端服务，主要包括发帖/点赞/回复评论、内容展示以及相关校园服务，例如代领快递、二手交易、以及账号个人信息的修改和处理。',
+        tags: {},
+      },
+
+      {
+        parentId: 3,
+        itemId: 1,
+        title: '',
+        remark: '',
+        btnHtml: '',
+        value:
+          '在后端服务中，使用<strong>Spring Security</strong>实现后端权限控制，路由守卫实现前端鉴权， 封装<strong>Axios</strong>统一管理项目 API，设置 Http 拦截器，在拦截器中设置公共请求头和异常<em>统一处理</em>，使用<strong>Async/await</strong>进行异步流程控制。 使用<strong>骨架屏</strong>优化等待体验， 优化<strong>SPA</strong>首屏页面渲染时间长、<em>路由懒加载</em>减少首屏代码块体积，<strong>Element</strong>按需导入减少依赖体积， 引用 <strong>CDN</strong> 外链加速传输。',
+        tags: {},
+      },
+      // <em></em>
+      // <strong></strong>
+      {
+        parentId: 3,
+        itemId: 2,
+        title: '',
+        remark: '',
+        btnHtml: '',
+        value:
+          '为满足点赞和评论等高并发度的操作引入了<strong>Redis</strong>缓存和<strong>Quartz</strong>定时任务，使用阿里云进行管理<strong>OSS</strong>服务，<em>域名DNS配置</em>，<em>HTTPS证书配置</em>等。在Ubuntu系统中搭建Nginx环境并完成后端项目的<em>上线部署</em>。',
+        tags: {},
+      },
+
+      // },
+    ] as Array<partItem>,
+  },
+  {
+    // 设置项目经历
+    id: 4,
+    childId: 0,
+    mainTitle: '开源项目',
+    subTitle: '',
+    subRemark: '',
+    subBtnHtml: '',
+    partItemList: [
+      {
+        parentId: 4,
+        itemId: 0,
+        title: '通用权限管理模板',
+        code_href: 'https://github.com/Jimi331492/Mj-Admin-Template',
+        remark: '',
+        btnHtml: '<a class="btn item-more" href="https://www.my3iao.com/Mj-Admin-Template/#/login" target="_blank" title="开源项目">Vue全家桶</a> ',
+        value:
+          '是一个基于 <strong>Vue3</strong> 和<strong>SpringBoot</strong>开发的全栈前后端分离的基础权限管理模板，' +
           '通过集成<em>shiro+jwt鉴权</em>，<em>动态路由</em>，<em>动态菜单</em>，<em>按钮权限</em>等功能，提供多种示例，将更多时间专注在业务开发上。',
         tags: {
           Vue3: 'strong',
@@ -334,7 +392,7 @@ export const partList: Array<part> = reactive([
         },
       },
       {
-        parentId: 3,
+        parentId: 4,
         itemId: 1,
         title: '',
         remark: '',
@@ -362,7 +420,7 @@ export const partList: Array<part> = reactive([
         remark: '2021-11 ~ 2021-12',
         btnHtml: '<a class="btn item-more" href="" target="_blank" title="开源项目">Typescript</a> ',
         value:
-          '使用了Vue3+Typescript,并采用了Composition API写法，,运用 Less 提高样式编写效率,' +
+          '使用了Vue3+Typescript,并采用了Composition API写法，运用 Less 提高样式编写效率,' +
           '主要实现了一个在线的可编辑的简历模板，运用CSS变量实现改变背景颜色，采用媒体查询实现打印格式，适配不同屏幕大小，达到响应式效果。',
         tags: {
           'Composition API': 'strong',
@@ -374,65 +432,7 @@ export const partList: Array<part> = reactive([
       },
     ] as Array<partItem>,
   },
-  {
-    // 设置项目经历
-    id: 4,
-    childId: 0,
-    mainTitle: '项目作品',
-    subTitle: '',
-    subRemark: '',
-    subBtnHtml: '',
-    partItemList: [
-      {
-        parentId: 4,
-        itemId: 0,
-        title: '电商后台管理系统',
-        // show_href: 'mmgoodstudy.icu/demoWall',
-        remark: '2021-07 ~ 2021-08',
-        btnHtml: '<a class="btn item-more" href="https://www.my3iao.com/e_manageSystem_Preview/#/login" target="_blank" title="电商后台管理系统">点击预览</a> ',
-        value:
-          '基于<strong>Vue3+ElementPlus</strong>开发，根据<em>开发文档</em>，实现了用户登录以及用户，权限，商品，订单数据等模块。' +
-          '在开发过程中，对<strong>Element</strong>中<strong>Table</strong>，<strong>Form</strong>等组件以及其他公共组件进行封装，<em>提高代码的复用率</em>。',
 
-        tags: {
-          'Vue3+ElementPlus': 'strong',
-          Element: 'strong',
-          Table: 'strong',
-          Form: 'strong',
-          提高代码的复用率: 'em',
-          开发文档: 'em',
-        },
-      },
-      {
-        parentId: 4,
-        itemId: 1,
-        title: '网上鲜花销售系统',
-        remark: '2021-05 ~ 2021-06',
-        btnHtml: '<a class="btn item-more" href="" target="_blank" title="项目作品">SSM</a>',
-        value:
-          '项目组长，负责小组人员工作分配、项目架构，指定团队协作流程、组织技术交流。' +
-          '编写了完整的可行性分析文档、需求规格说明书、开发文档、测试文档、用户使用文档。' +
-          '负责前端页面编写和功能交互，实现鲜花上架、收发货管理、物流管理等核心功能',
-        tags: {
-          项目组长: 'em',
-          工作分配: 'em',
-          项目架构: 'em',
-          指定团队协作: 'em',
-          组织技术交流: 'em',
-          可行性分析文档: 'em',
-          需求规格说明书: 'em',
-          开发文档: 'em',
-          测试文档: 'em',
-          用户使用文档: 'em',
-          页面编写: 'em',
-          功能交互: 'em',
-          鲜花上架: 'em',
-          收发货管理: 'em',
-          物流管理: 'em',
-        },
-      },
-    ] as Array<partItem>,
-  },
   {
     // 设置项目经历
     id: 5,
@@ -449,8 +449,8 @@ export const partList: Array<part> = reactive([
         remark: '',
         btnHtml: '',
         value:
-          '本人热爱互联网，热爱编程，已积累一定数量中小型前端项目开发经验，能够落实完成工作任务，WEB后端方向熟悉Java语言，了解SpringBoot和Nodejs，能自己开发一些小型全栈项目，能持续保持知识积累，对新技术好奇。',
-        // '购买过云服务器，有在Cent.OS服务器进行远程部署项目的经历，独立搭建博客用于学习，交流技术。',
+          '本人热爱互联网，热爱编程，已积累一定数量<em>中小型前端项目开发经验</em>，WEB后端方向熟悉<strong>Java</strong>语言，能使用<strong>SpringBoot</strong>或<strong>Node.js</strong>搭建后端项目开发环境，能自己<em>独立开发小型全栈项目</em>，能够积极落实完成工作任务，能持续保持知识积累，对新技术好奇。' +
+          '购买过云服务器，有在服务器进行搭建生产环境并部署项目的经历，<em>独立搭建博客</em>用于学习，交流技术。',
         tags: {
           热爱互联网: 'em',
           热爱编程: 'em',
