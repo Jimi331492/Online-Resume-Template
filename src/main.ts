@@ -1,10 +1,10 @@
 /*
- * @Author: 龙际妙
+ * @Author: 龙际妙ss
  * @Date: 2021-12-06 18:19:32
  * @Description:
- * @FilePath: \resume-ts-template\src\main.ts
- * @LastEditTime: 2021-12-16 19:19:18
- * @LastEditors: Please set LastEditors
+ * @FilePath: /Online-Resume-Template/src/main.ts
+ * @LastEditTime: 2022-11-03 16:33:24
+ * @LastEditors: Jimi Lo
  */
 import { createApp } from 'vue'
 import App from './App.vue'
